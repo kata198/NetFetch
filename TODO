@@ -1,0 +1,6 @@
+* Create a way for client to override "hostname" key
+* Create a server/client setup, such that you can request a file from a server, and the daemon will fetch and store it (and optionally delete after)
+* Figure out some way to integrate non-absolute paths, i.e. arbitrary key
+* Think of a good way to allow deleting files. My concern is someone deleting password-protected data, but I guess they could do that manually anyway.
+* README.rst/README.md documentation
+* pydoc documentation

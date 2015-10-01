@@ -1,0 +1,130 @@
+#!/usr/bin/env python
+# Copyright (c) 2015 Tim Savannah GPLv3 + attribution clause. See LICENSE for more information.
+# 
+#  This file contains the application to store files in NetFetch
+
+# vim: ts=4 sw=4 expandtab
+
+import os
+import sys
+
+import getpass
+
+from NetFetch import NetFetchFile, setRedisConnectionParams
+from NetFetch.config import getRedisConnectionParams
+from NetFetch.client_utils import readPasswordFromFilename, findDefaultConfigFilename
+
+# TODO: more exception handling
+
+def printUsage():
+    sys.stderr.write('Usage: netFetchPut (options) [absolute filename]\n')
+    sys.stderr.write('''  Stores a given file in NetFetch, optionally password-protecting it as well.
+
+    Options:
+
+      --password                 Prompt for password on storing this file
+      --password-file=fname      Read password from a given filename instead of tty. Implies --password.
+        
+      --no-preserve              Do not store owner/group/mode information
+
+      --config=/path/x.txt       Use provided config for redis. Default is to look in /etc/netfetch.cfg
+
+    Provided filename must be an absolute path.
+
+ Example: netFetchPut /Data/myfile.db
+''')
+    
+
+if __name__ == '__main__':
+    args = set(sys.argv[1:])
+    if not args or '--help' in args:
+        printUsage()
+        sys.exit(1)
+
+    isPromptPassword  = False
+    isPreserveAttributes = True
+    password = None
+
+    if '--password' in args:
+        args.remove('--password')
+        isPromptPassword = True
+
+    for arg in args:
+        if arg.startswith('--password-file='):
+            isPromptPassword = False
+            sys.argv.remove(arg)
+            args.remove(arg)
+            passwordFilename = arg[len('--password-file='):]
+            password = readPasswordFromFilename(passwordFilename)
+            break
+
+    if '--no-preserve' in args:
+        args.remove('--no-preserve')
+        isPreserveAttributes = False
+
+    configFilename = ''
+
+    for arg in args:
+        if arg.startswith('--config='):
+            configFilename = arg[len('--config='):]
+            if not os.path.isfile(configFilename):
+                sys.stderr.write('Cannot find provided config file, "%s"\n' %(configFilename,))
+                sys.exit(1)
+            break
+
+    if configFilename:
+        args.remove('--config=' + configFilename)
+    else:
+        configFilename = findDefaultConfigFilename()
+        if not configFilename:
+            sys.stderr.write('No config file provided, and none found in default locations of $HOME/.netfetch.cfg or /etc/netfetch.cfg. Please provide one with --config=/path/to/netfetch.cfg\n')
+            sys.exit(5)
+
+
+    if not os.path.isfile(configFilename):
+        sys.stderr.write('Config file %s does not exist! Specify an alternative with --config=/path/to/file.cfg?\n' %(configFilename,))
+        sys.exit(5)
+
+    numArgs = len(args)
+    if numArgs != 1:
+        if numArgs > 1:
+            sys.stderr.write('Too many arguments.\n\n')
+            printUsage()
+            sys.exit(1)
+        else:
+            sys.stderr.write('Missing filename.\n\n')
+            printUsage()
+            sys.exit(1)
+
+    try:
+        redisConnectionParams = getRedisConnectionParams(configFilename)
+    except Exception as e:
+        sys.stderr.write('Error parsing config file: %s\n' %(configFilename,))
+        sys.exit(5)
+
+    setRedisConnectionParams(redisConnectionParams)
+        
+    filename = args.pop()
+    if not filename.startswith('/'):
+        sys.stderr.write('Only absolute paths are supported.\n')
+        sys.exit(1)
+    
+    if not os.path.exists(filename):
+        sys.stderr.write('"%s" does not exist.\n' %(filename,))
+        sys.exit(1)
+
+    if isPromptPassword is True:
+        while True:
+            password = getpass.getpass()
+            if not password:
+                sys.stderr.write('No password provided. Try again.\n')
+            else:
+                break
+
+    try:
+        NetFetchFile.createOrUpdateFromFile(filename, password=password, savePermissions=isPreserveAttributes)
+    except ValueError as e:
+        sys.stderr.write('Failed to store file: %s\n' %(str(e),))
+        sys.exit(1)
+
+    sys.stdout.write('Uploaded.\n')

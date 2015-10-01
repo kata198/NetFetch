@@ -1,0 +1,15 @@
+
+Files are stored, keyed by the hostname it was submitted from and the filename. Can be retrieved using these two pieces of information.
+
+See netPutFile and netFetchFile for more information.
+
+Connects to Redis. The config can be provided on a per-execution basis, by using --config=/path/to/config, or preferably by distributing a file to /etc/netfetch.cfg with the completed attributes.
+
+Format is: a section header, [redis], followed by connection params.
+
+See the following example:
+
+[redis]
+host=127.0.0.1
+port=6379
+db=1
