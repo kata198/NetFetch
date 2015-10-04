@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package NetFetch</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>NetFetch</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/media/projects/NetFetch/NetFetch/__init__.py">/home/media/projects/NetFetch/NetFetch/__init__.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;Copyright&nbsp;(c)&nbsp;2015&nbsp;Tim&nbsp;Savannah&nbsp;GPLv3&nbsp;+&nbsp;attribution&nbsp;clause.&nbsp;See&nbsp;LICENSE&nbsp;for&nbsp;more&nbsp;information.<br>
+#&nbsp;<br>
+#&nbsp;&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;model&nbsp;and&nbsp;methods&nbsp;for&nbsp;using&nbsp;NetFetch</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="NetFetch.client_utils.html">client_utils</a><br>
+</td><td width="25%" valign=top><a href="NetFetch.config.html">config</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="NetFetch.html#NetFetchFile">NetFetchFile</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#Exception">builtins.Exception</a>(<a href="builtins.html#BaseException">builtins.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="NetFetch.html#InvalidPasswordException">InvalidPasswordException</a>
+</font></dt><dt><font face="helvetica, arial"><a href="NetFetch.html#NoSuchNetFetchFile">NoSuchNetFetchFile</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InvalidPasswordException">class <strong>InvalidPasswordException</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;when&nbsp;an&nbsp;invalid&nbsp;password&nbsp;is&nbsp;provided,&nbsp;or&nbsp;some&nbsp;other&nbsp;password-related&nbsp;failure.<br>
+&nbsp;<br>
+Message&nbsp;contains&nbsp;exact&nbsp;reason.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="NetFetch.html#InvalidPasswordException">InvalidPasswordException</a></dd>
+<dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+<dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="InvalidPasswordException-__init__"><strong>__init__</strong></a>(self, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="InvalidPasswordException-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><a name="InvalidPasswordException-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="InvalidPasswordException-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="InvalidPasswordException-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InvalidPasswordException-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="InvalidPasswordException-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="InvalidPasswordException-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InvalidPasswordException-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="InvalidPasswordException-with_traceback"><strong>with_traceback</strong></a>(...)</dt><dd><tt><a href="builtins.html#Exception">Exception</a>.<a href="#InvalidPasswordException-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><strong>__cause__</strong></dt>
+<dd><tt>exception&nbsp;cause</tt></dd>
+</dl>
+<dl><dt><strong>__context__</strong></dt>
+<dd><tt>exception&nbsp;context</tt></dd>
+</dl>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>__suppress_context__</strong></dt>
+</dl>
+<dl><dt><strong>__traceback__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NetFetchFile">class <strong>NetFetchFile</strong></a>(<a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#NetFetchFile">NetFetchFile</a>&nbsp;-&nbsp;Represents&nbsp;a&nbsp;File&nbsp;stored&nbsp;in&nbsp;NetFetch.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;file&nbsp;is&nbsp;keyed&nbsp;based&nbsp;on&nbsp;hostname&nbsp;and&nbsp;absolute&nbsp;filename.&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;May&nbsp;optionally&nbsp;have&nbsp;mode,owner,group&nbsp;filled-in.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;May&nbsp;be&nbsp;encrypted&nbsp;with&nbsp;a&nbsp;password,&nbsp;in&nbsp;which&nbsp;case&nbsp;"encrypted"&nbsp;is&nbsp;set&nbsp;to&nbsp;"1".<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="NetFetch.html#NetFetchFile">NetFetchFile</a></dd>
+<dd><a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NetFetchFile-encryptData"><strong>encryptData</strong></a>(self, password)</dt><dd><tt>encryptData&nbsp;-&nbsp;Encrypts&nbsp;data&nbsp;on&nbsp;this&nbsp;object&nbsp;and&nbsp;sets&nbsp;'encrypted'&nbsp;flag.&nbsp;&nbsp;Does&nbsp;not&nbsp;save&nbsp;object.<br>
+&nbsp;<br>
+@param&nbsp;password&nbsp;&lt;str&gt;&nbsp;4-32&nbsp;characters&nbsp;of&nbsp;password,&nbsp;used&nbsp;to&nbsp;encrypt.<br>
+&nbsp;<br>
+@raises&nbsp;-&nbsp;ValueError&nbsp;if&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;requirements</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-getData"><strong>getData</strong></a>(self, password=None)</dt><dd><tt>getData&nbsp;-&nbsp;Fetch&nbsp;the&nbsp;data&nbsp;associated&nbsp;with&nbsp;this&nbsp;file,&nbsp;and&nbsp;potentially&nbsp;decrypt.<br>
+&nbsp;<br>
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;None&nbsp;if&nbsp;unencrypted,&nbsp;otherwise&nbsp;a&nbsp;password&nbsp;4-32&nbsp;chars.<br>
+&nbsp;<br>
+@return&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;file&nbsp;data<br>
+&nbsp;<br>
+@raises&nbsp;<a href="#InvalidPasswordException">InvalidPasswordException</a>&nbsp;-&nbsp;The&nbsp;file&nbsp;was&nbsp;encrypted&nbsp;and&nbsp;a&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;or&nbsp;the&nbsp;file&nbsp;was&nbsp;not&nbsp;encrypted&nbsp;and&nbsp;a&nbsp;password&nbsp;was&nbsp;provided,&nbsp;or&nbsp;the&nbsp;file&nbsp;was&nbsp;encrypted&nbsp;and&nbsp;no&nbsp;password&nbsp;was&nbsp;provided.<br>
+@raises&nbsp;ValueError&nbsp;-&nbsp;If&nbsp;password&nbsp;is&nbsp;not&nbsp;4-32&nbsp;characters.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-setData"><strong>setData</strong></a>(self, data)</dt><dd><tt>setData&nbsp;-&nbsp;Store&nbsp;data&nbsp;on&nbsp;this&nbsp;object&nbsp;and&nbsp;calculates&nbsp;checksum.&nbsp;If&nbsp;a&nbsp;password&nbsp;is&nbsp;required,&nbsp;must&nbsp;also&nbsp;call&nbsp;encryptData.&nbsp;Does&nbsp;not&nbsp;save&nbsp;object.<br>
+&nbsp;<br>
+@param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;store</tt></dd></dl>
+
+<hr>
+Class methods defined here:<br>
+<dl><dt><a name="NetFetchFile-create"><strong>create</strong></a>(filename, data, mode='', owner='', group='', password=None, hostnameOverride=None)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>create&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile">NetFetchFile</a>&nbsp;object<br>
+&nbsp;<br>
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br>
+@param&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;str<br>
+@param&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;String&nbsp;or&nbsp;int&nbsp;of&nbsp;base-8&nbsp;encoded&nbsp;chmod&nbsp;value.&nbsp;os.stat(x).st_mode&nbsp;returns&nbsp;this.<br>
+@param&nbsp;owner&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Username&nbsp;owner<br>
+@param&nbsp;group&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Associated&nbsp;group<br>
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br>
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile">NetFetchFile</a>&nbsp;object<br>
+&nbsp;<br>
+@raises&nbsp;KeyError&nbsp;if&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;already&nbsp;exists.&nbsp;use&nbsp;createOrUpdate&nbsp;to&nbsp;conditionally&nbsp;update&nbsp;it.<br>
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-createOrUpdate"><strong>createOrUpdate</strong></a>(filename, data, mode='', owner='', group='', password=None, hostnameOverride=None)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>createOrUpdate&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile">NetFetchFile</a>&nbsp;object,&nbsp;or&nbsp;update&nbsp;an&nbsp;existing&nbsp;one.<br>
+&nbsp;<br>
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br>
+@param&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;str<br>
+@param&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;String&nbsp;or&nbsp;int&nbsp;of&nbsp;base-8&nbsp;encoded&nbsp;chmod&nbsp;value.&nbsp;os.stat(x).st_mode&nbsp;returns&nbsp;this.<br>
+@param&nbsp;owner&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Username&nbsp;owner<br>
+@param&nbsp;group&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Associated&nbsp;group<br>
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br>
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile">NetFetchFile</a>&nbsp;object<br>
+&nbsp;<br>
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-createOrUpdateFromFile"><strong>createOrUpdateFromFile</strong></a>(filename, password=None, hostnameOverride=None, savePermissions=True)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>createOrUpdateFromFile&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile">NetFetchFile</a>&nbsp;object,&nbsp;or&nbsp;update&nbsp;an&nbsp;existing&nbsp;one,&nbsp;provided&nbsp;with&nbsp;a&nbsp;filename.<br>
+&nbsp;<br>
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br>
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br>
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br>
+@param&nbsp;savePermissions&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;will&nbsp;store&nbsp;owner/group/mode&nbsp;of&nbsp;file.<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile">NetFetchFile</a>&nbsp;object<br>
+&nbsp;<br>
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-downloadToLocal"><strong>downloadToLocal</strong></a>(hostname, filename, password=None, localFilename=None, retainPermissions=True)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>downloadToLocal&nbsp;-&nbsp;Download&nbsp;file&nbsp;to&nbsp;a&nbsp;local&nbsp;filename<br>
+&nbsp;<br>
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br>
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;fetch<br>
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;Try&nbsp;this&nbsp;password&nbsp;on&nbsp;potentially&nbsp;encrpyted&nbsp;file.<br>
+@param&nbsp;localFilename&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;If&nbsp;defined,&nbsp;saves&nbsp;at&nbsp;this&nbsp;location.&nbsp;Otherwise,&nbsp;saves&nbsp;at&nbsp;#filename<br>
+@param&nbsp;retainPermissions&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;tries&nbsp;to&nbsp;retain&nbsp;owner/group/mode.&nbsp;If&nbsp;owner/group,&nbsp;you&nbsp;must&nbsp;be&nbsp;root.&nbsp;Silently&nbsp;fails&nbsp;if&nbsp;can't&nbsp;apply.<br>
+&nbsp;<br>
+@raises&nbsp;<a href="#NoSuchNetFetchFile">NoSuchNetFetchFile</a>&nbsp;-&nbsp;If&nbsp;no&nbsp;hostname/filename&nbsp;match&nbsp;exists<br>
+@raises&nbsp;<a href="#InvalidPasswordException">InvalidPasswordException</a>&nbsp;-&nbsp;If&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;see&nbsp;getData&nbsp;for&nbsp;all&nbsp;conditions.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-downloadToStr"><strong>downloadToStr</strong></a>(hostname, filename, password=None)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>downloadToStr&nbsp;-&nbsp;Download&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;and&nbsp;return&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;<br>
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br>
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;fetch<br>
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;Try&nbsp;this&nbsp;password&nbsp;on&nbsp;potentially&nbsp;encrpyted&nbsp;file.<br>
+&nbsp;<br>
+@return&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;that&nbsp;has&nbsp;been&nbsp;downloaded<br>
+&nbsp;<br>
+@raises&nbsp;<a href="#NoSuchNetFetchFile">NoSuchNetFetchFile</a>&nbsp;-&nbsp;If&nbsp;no&nbsp;hostname/filename&nbsp;match&nbsp;exists<br>
+@raises&nbsp;<a href="#InvalidPasswordException">InvalidPasswordException</a>&nbsp;-&nbsp;If&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;see&nbsp;getData&nbsp;for&nbsp;all&nbsp;conditions.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-exists"><strong>exists</strong></a>(hostname, filename)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>exists&nbsp;-&nbsp;Check&nbsp;if&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;exists<br>
+&nbsp;<br>
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;field<br>
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;field<br>
+&nbsp;<br>
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;If&nbsp;a&nbsp;file&nbsp;is&nbsp;stored&nbsp;under&nbsp;the&nbsp;hostname/filename&nbsp;key&nbsp;pair</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="NetFetchFile-calculateChecksum"><strong>calculateChecksum</strong></a>(data)</dt><dd><tt>calculateChecksum&nbsp;-&nbsp;Calculates&nbsp;a&nbsp;checksum&nbsp;from&nbsp;given&nbsp;data<br>
+&nbsp;<br>
+@param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;check</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>BASE64_FIELDS</strong> = ['data']</dl>
+
+<dl><dt><strong>FIELDS</strong> = ['filename', 'hostname', 'checksum', 'encrypted', 'mode', 'owner', 'group', 'data']</dl>
+
+<dl><dt><strong>INDEXED_FIELDS</strong> = ['filename', 'hostname']</dl>
+
+<dl><dt><strong>KEY_NAME</strong> = 'NetFetchFile'</dl>
+
+<hr>
+Methods inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>:<br>
+<dl><dt><a name="NetFetchFile-__getstate__"><strong>__getstate__</strong></a>(self)</dt><dd><tt>pickle&nbsp;uses&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-__init__"><strong>__init__</strong></a>(self, *args, **kwargs)</dt><dd><tt>__init__&nbsp;-&nbsp;Set&nbsp;the&nbsp;values&nbsp;on&nbsp;this&nbsp;object.&nbsp;MAKE&nbsp;SURE&nbsp;YOU&nbsp;CALL&nbsp;THE&nbsp;SUPER&nbsp;HERE,&nbsp;or&nbsp;else&nbsp;things&nbsp;will&nbsp;not&nbsp;work.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>__repr__&nbsp;-&nbsp;Returns&nbsp;a&nbsp;string&nbsp;of&nbsp;the&nbsp;constructor/params&nbsp;to&nbsp;recreate&nbsp;this&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Example:&nbsp;objCopy&nbsp;=&nbsp;eval(repr(obj))<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;String&nbsp;of&nbsp;python&nbsp;init&nbsp;call&nbsp;to&nbsp;recreate&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-__setstate__"><strong>__setstate__</strong></a>(self, stateDict)</dt><dd><tt>pickle&nbsp;uses&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>__str__&nbsp;-&nbsp;Returns&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;this&nbsp;object's&nbsp;state.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;implementation.<br>
+&nbsp;<br>
+@return&nbsp;&lt;str&gt;-&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Some&nbsp;samples:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;str(z)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'&lt;Song&nbsp;obj&nbsp;_id=24&nbsp;at&nbsp;0x7f3c6a3a4490&gt;'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;z.artist&nbsp;=&nbsp;'New&nbsp;Artist'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;str(z)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'&lt;Song&nbsp;obj&nbsp;_id=24&nbsp;(Unsaved&nbsp;Changes)&nbsp;at&nbsp;0x7f3c6a3a4490&gt;'</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-asDict"><strong>asDict</strong></a>(self, includeMeta=False)</dt><dd><tt>toDict&nbsp;/&nbsp;asDict&nbsp;-&nbsp;Get&nbsp;a&nbsp;dictionary&nbsp;representation&nbsp;of&nbsp;this&nbsp;model.<br>
+&nbsp;<br>
+@param&nbsp;includeMeta&nbsp;-&nbsp;Include&nbsp;metadata&nbsp;in&nbsp;return.&nbsp;For&nbsp;now,&nbsp;this&nbsp;is&nbsp;only&nbsp;pk&nbsp;stored&nbsp;as&nbsp;"_id"<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-copy"><strong>copy</strong></a>(self, copyPrimaryKey=False)</dt><dd><tt>copy&nbsp;-&nbsp;Copies&nbsp;this&nbsp;object.<br>
+&nbsp;<br>
+@param&nbsp;copyPrimaryKey&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;any&nbsp;changes&nbsp;to&nbsp;the&nbsp;copy&nbsp;will&nbsp;save&nbsp;over-top&nbsp;the&nbsp;existing&nbsp;entry&nbsp;in&nbsp;Redis.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False,&nbsp;only&nbsp;the&nbsp;data&nbsp;is&nbsp;copied,&nbsp;and&nbsp;nothing&nbsp;is&nbsp;saved.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-delete"><strong>delete</strong></a>(self)</dt><dd><tt>delete&nbsp;-&nbsp;Delete&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-getPk"><strong>getPk</strong></a>(self)</dt><dd><tt>getPk&nbsp;-&nbsp;Gets&nbsp;the&nbsp;internal&nbsp;primary&nbsp;key&nbsp;associated&nbsp;with&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-getUpdatedFields"><strong>getUpdatedFields</strong></a>(self)</dt><dd><tt>getUpdatedFields&nbsp;-&nbsp;See&nbsp;changed&nbsp;fields.<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;fieldName&nbsp;:&nbsp;tuple(old,&nbsp;new)</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-hasUnsavedChanges"><strong>hasUnsavedChanges</strong></a>(self)</dt><dd><tt>hasUnsavedChanges&nbsp;-&nbsp;Check&nbsp;if&nbsp;any&nbsp;unsaved&nbsp;changes&nbsp;are&nbsp;present&nbsp;in&nbsp;this&nbsp;model,&nbsp;or&nbsp;if&nbsp;it&nbsp;has&nbsp;never&nbsp;been&nbsp;saved.<br>
+&nbsp;<br>
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;any&nbsp;fields&nbsp;have&nbsp;changed&nbsp;since&nbsp;last&nbsp;fetch,&nbsp;or&nbsp;if&nbsp;never&nbsp;saved.&nbsp;Otherwise,&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-reload"><strong>reload</strong></a>(self)</dt><dd><tt>reload&nbsp;-&nbsp;Reload&nbsp;this&nbsp;object&nbsp;from&nbsp;the&nbsp;database.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;@raises&nbsp;KeyError&nbsp;-&nbsp;if&nbsp;this&nbsp;object&nbsp;has&nbsp;not&nbsp;been&nbsp;saved&nbsp;(no&nbsp;primary&nbsp;key)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;True&nbsp;if&nbsp;any&nbsp;updates&nbsp;occured,&nbsp;False&nbsp;if&nbsp;data&nbsp;remained&nbsp;the&nbsp;same.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-save"><strong>save</strong></a>(self)</dt><dd><tt>save&nbsp;-&nbsp;Save&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-saveToExternal"><strong>saveToExternal</strong></a>(self, redisCon)</dt><dd><tt>saveToExternal&nbsp;-&nbsp;Saves&nbsp;this&nbsp;object&nbsp;to&nbsp;a&nbsp;different&nbsp;Redis&nbsp;than&nbsp;that&nbsp;specified&nbsp;by&nbsp;REDIS_CONNECTION_PARAMS&nbsp;on&nbsp;this&nbsp;model.<br>
+&nbsp;<br>
+@param&nbsp;redisCon&nbsp;&lt;dict/redis.Redis&gt;&nbsp;-&nbsp;Either&nbsp;a&nbsp;dict&nbsp;of&nbsp;connection&nbsp;params,&nbsp;a&nbsp;la&nbsp;REDIS_CONNECTION_PARAMS,&nbsp;or&nbsp;an&nbsp;existing&nbsp;Redis&nbsp;connection.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;are&nbsp;doing&nbsp;a&nbsp;lot&nbsp;of&nbsp;bulk&nbsp;copies,&nbsp;it&nbsp;is&nbsp;recommended&nbsp;that&nbsp;you&nbsp;create&nbsp;a&nbsp;Redis&nbsp;connection&nbsp;and&nbsp;pass&nbsp;it&nbsp;in&nbsp;rather&nbsp;than&nbsp;establish&nbsp;a&nbsp;new<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection&nbsp;with&nbsp;each&nbsp;call.<br>
+&nbsp;<br>
+@note&nbsp;-&nbsp;You&nbsp;will&nbsp;generate&nbsp;a&nbsp;new&nbsp;primary&nbsp;key&nbsp;relative&nbsp;to&nbsp;the&nbsp;external&nbsp;Redis&nbsp;environment.&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;reference&nbsp;a&nbsp;"shared"&nbsp;primary&nbsp;key,&nbsp;it&nbsp;is&nbsp;better<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;use&nbsp;an&nbsp;indexed&nbsp;field&nbsp;than&nbsp;the&nbsp;internal&nbsp;pk.</tt></dd></dl>
+
+<dl><dt><a name="NetFetchFile-toDict"><strong>toDict</strong></a> = asDict(self, includeMeta=False)</dt><dd><tt>toDict&nbsp;/&nbsp;asDict&nbsp;-&nbsp;Get&nbsp;a&nbsp;dictionary&nbsp;representation&nbsp;of&nbsp;this&nbsp;model.<br>
+&nbsp;<br>
+@param&nbsp;includeMeta&nbsp;-&nbsp;Include&nbsp;metadata&nbsp;in&nbsp;return.&nbsp;For&nbsp;now,&nbsp;this&nbsp;is&nbsp;only&nbsp;pk&nbsp;stored&nbsp;as&nbsp;"_id"<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>:<br>
+<dl><dt><a name="NetFetchFile-reset"><strong>reset</strong></a>(newValues)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt></dl>
+
+<dl><dt><a name="NetFetchFile-validateModel"><strong>validateModel</strong></a>()<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>validateModel&nbsp;-&nbsp;Class&nbsp;method&nbsp;that&nbsp;validates&nbsp;a&nbsp;given&nbsp;model&nbsp;is&nbsp;implemented&nbsp;correctly.&nbsp;Will&nbsp;only&nbsp;be&nbsp;validated&nbsp;once,&nbsp;on&nbsp;first&nbsp;model&nbsp;instantiation.<br>
+&nbsp;<br>
+@param&nbsp;model&nbsp;-&nbsp;Implicit&nbsp;of&nbsp;own&nbsp;class<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;True<br>
+&nbsp;<br>
+@raises&nbsp;-&nbsp;InvalidModelException&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;problem&nbsp;with&nbsp;the&nbsp;model,&nbsp;and&nbsp;the&nbsp;message&nbsp;contains&nbsp;relevant&nbsp;information.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>:<br>
+<dl><dt><strong>REDIS_CONNECTION_PARAMS</strong> = {}</dl>
+
+<dl><dt><strong>deleter</strong> = &lt;IndexedRedis.IndexedRedisDelete object&gt;</dl>
+
+<dl><dt><strong>objects</strong> = &lt;IndexedRedis.IndexedRedisQuery object&gt;</dl>
+
+<dl><dt><strong>saver</strong> = &lt;IndexedRedis.IndexedRedisSave object&gt;</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NoSuchNetFetchFile">class <strong>NoSuchNetFetchFile</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;when&nbsp;a&nbsp;file&nbsp;attempted&nbsp;to&nbsp;be&nbsp;fetched&nbsp;does&nbsp;not&nbsp;exist<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="NetFetch.html#NoSuchNetFetchFile">NoSuchNetFetchFile</a></dd>
+<dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+<dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="NoSuchNetFetchFile-__init__"><strong>__init__</strong></a>(self, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><a name="NoSuchNetFetchFile-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="NoSuchNetFetchFile-with_traceback"><strong>with_traceback</strong></a>(...)</dt><dd><tt><a href="builtins.html#Exception">Exception</a>.<a href="#NoSuchNetFetchFile-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><strong>__cause__</strong></dt>
+<dd><tt>exception&nbsp;cause</tt></dd>
+</dl>
+<dl><dt><strong>__context__</strong></dt>
+<dd><tt>exception&nbsp;context</tt></dd>
+</dl>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>__suppress_context__</strong></dt>
+</dl>
+<dl><dt><strong>__traceback__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-setRedisConnectionParams"><strong>setRedisConnectionParams</strong></a>(redisParams)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')</td></tr></table>
+</body></html>

@@ -22,7 +22,7 @@ Store files using *netFetchPut*.
 			
 			--no-preserve              Do not store owner/group/mode information
 
-			--config=/path/x.txt       Use provided config for redis. Default is to look in /etc/netfetch.cfg
+			--config=/path/x.cfg       Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
 		Provided filename must be an absolute path.
 
@@ -44,7 +44,7 @@ Retrieve files using *netFetchGet*
 		  
 			--no-preserve               Do not apply stored attributes (owner/group/mode)
 
-			--config=/path/config.cfg   Use provided config for redis. Default is to look in /etc/netfetch.cfg
+			--config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
 		Provided filename must be an absolute path.
 
@@ -63,3 +63,11 @@ Example Configuration:
 	host=127.0.0.1
 	port=6379
 	db=1
+
+
+Full API
+--------
+
+Can be found  http://htmlpreview.github.io/?https://github.com/kata198/NetFetch/blob/master/doc/AdvancedHTMLParser.html .
+
+Various examples  can be found in the "tests" directory, check github.

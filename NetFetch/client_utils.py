@@ -4,6 +4,15 @@ import os
 import sys
 
 def readPasswordFromFilename(passwordFilename):
+    '''
+        readPasswordFromFilename - Handles reading password from a given file
+
+        @param passwordFilename <str> - Path to filename file
+
+        Exists on failure
+
+        @return <str>  - String of  password
+    '''
     if not os.path.exists(passwordFilename):
         sys.stderr.write('Cannot find password file: "%s"\n' %(passwordFilename,))
         sys.exit(1)
@@ -26,6 +35,11 @@ def readPasswordFromFilename(passwordFilename):
 
 
 def findDefaultConfigFilename():
+    '''
+        findDefaultConfigFilename - Searches ~/.netconfig.cfg and /etc/netconfig.cfg in that order, and returns the first that exists, or None
+
+        @return  <str/None> - Path  to config to use or None if neither exists.
+    '''
     if 'HOME' in os.environ and os.path.isdir(os.environ['HOME']):
         cfgPath = "%s/.netfetch.cfg" %(os.environ['HOME'],)
         if os.path.isfile(cfgPath):

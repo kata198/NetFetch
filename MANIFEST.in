@@ -1,4 +1,5 @@
 recursive-include NetFetch *.py
+recursive-include doc *.html
 include INSTALL
 include LICENSE
 include netFetchGet

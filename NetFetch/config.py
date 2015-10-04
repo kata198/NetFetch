@@ -8,6 +8,15 @@ except ImportError:
 
 
 def getRedisConnectionParams(configFile):
+    '''
+        getRedisConnectionParams - Reads Redis connection params from a config file
+
+        Format is one section, [redis], with a key=value  for  each param (host/port/db)
+
+        @param configFile <str>  - Config file  path
+
+        @return <dict> - params to redis.Redis
+    '''
     parser = ConfigParser()
     with open(configFile, 'r') as f:
         parser.readfp(f)

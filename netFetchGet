@@ -27,7 +27,7 @@ def printUsage():
       
       --no-preserve               Do not apply stored attributes (owner/group/mode)
 
-      --config=/path/config.cfg   Use provided config for redis. Default is to look in /etc/netfetch.cfg
+      --config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
     Provided filename must be an absolute path.
 
