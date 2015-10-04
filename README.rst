@@ -91,4 +91,8 @@ Example Configuration:
 	db=1
 
 
+API
+---
+
+Can be found  http://htmlpreview.github.io/?https://github.com/kata198/NetFetch/blob/master/doc/NetFetch.html .
 

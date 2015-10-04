@@ -14,8 +14,11 @@ from cryptography.fernet import Fernet
 from hashlib import md5
 
 
-
 __all__ = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')
+
+__version__ = '1.0.0'
+
+__version_tuple__ = ('1', '0', '0')
 
 def setRedisConnectionParams(redisParams):
     NetFetchFile.REDIS_CONNECTION_PARAMS = redisParams

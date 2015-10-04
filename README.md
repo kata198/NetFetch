@@ -65,9 +65,8 @@ Example Configuration:
 	db=1
 
 
-Full API
---------
+API
+---
 
-Can be found  http://htmlpreview.github.io/?https://github.com/kata198/NetFetch/blob/master/doc/AdvancedHTMLParser.html .
+Can be found  http://htmlpreview.github.io/?https://github.com/kata198/NetFetch/blob/master/doc/NetFetch.html .
 
-Various examples  can be found in the "tests" directory, check github.
