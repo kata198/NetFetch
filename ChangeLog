@@ -1,2 +1,8 @@
+* 2.0.0 Release    Dec 28 2015
+- *BACKWARDS INCOMPATIBLE CHANGE* directly store as binary instead of using
+base64 encoding/decoding, for vast speedups and space improvements. See README
+for more information, including how to use old format.
+
+
 * 1.0.0 prerelease Sep 30 2015
 - Initial Prerelease

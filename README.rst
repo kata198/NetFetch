@@ -35,6 +35,9 @@ Store files using *netFetchPut*.
 			--config=/path/x.txt       Use provided config for redis. Default is to look in /etc/netfetch.cfg
 
 
+			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+
+
 		Provided filename must be an absolute path.
 
 
@@ -66,6 +69,8 @@ Retrieve files using *netFetchGet*
 
 			--config=/path/config.cfg   Use provided config for redis. Default is to look in /etc/netfetch.cfg
 
+			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+
 
 		Provided filename must be an absolute path.
 
@@ -77,7 +82,7 @@ Retrieve files using *netFetchGet*
 Configuration
 -------------
 
-The Redis server on which to connect is specified by a config file. The applications will check first $HOME/.netfetch.cfg, then /etc/netfetch.cfg if a \-\-config=/path/to/netfetch.cfg is not provided.
+The Redis server on which to connect is specified by a config file. The applications will check first $HOME/.netfetch.cfg, then /etc/netfetch.cfg if a --config=/path/to/netfetch.cfg is not provided.
 
 
 Example Configuration:
@@ -89,6 +94,14 @@ Example Configuration:
 	port=6379
 
 	db=1
+
+Backwards Incompatible Changes
+------------------------------
+
+Version 2.0 updated the storage format to a much more efficient form (directly stores instead of base64-encoding/decoding). This makes everything much faster and take up less space, but is incompatible with versions prior to 2.0. To fetch/put a file using the old format, use "--old-format" with netFetchGet/netFetchPut.
+
+
+To Migrate, fetch any files using "--old-format", and then store them back without that flag. There is not an automatic util, because of encryption.
 
 
 API

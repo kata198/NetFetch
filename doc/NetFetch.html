@@ -6,9 +6,9 @@
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>NetFetch</strong></big></big></font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>NetFetch</strong></big></big> (version 2.0.0)</font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/media/projects/NetFetch/NetFetch/__init__.py">/home/media/projects/NetFetch/NetFetch/__init__.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href="NetFetch.html">index</a></font></td></tr></table>
     <p><tt>#&nbsp;Copyright&nbsp;(c)&nbsp;2015&nbsp;Tim&nbsp;Savannah&nbsp;GPLv3&nbsp;+&nbsp;attribution&nbsp;clause.&nbsp;See&nbsp;LICENSE&nbsp;for&nbsp;more&nbsp;information.<br>
 #&nbsp;<br>
 #&nbsp;&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;model&nbsp;and&nbsp;methods&nbsp;for&nbsp;using&nbsp;NetFetch</tt></p>
@@ -224,9 +224,11 @@ Static methods defined here:<br>
 &nbsp;<br>
 @param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;check</tt></dd></dl>
 
+<dl><dt><a name="NetFetchFile-toggleOldFormat"><strong>toggleOldFormat</strong></a>(useOld=True)</dt></dl>
+
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>BASE64_FIELDS</strong> = ['data']</dl>
+<dl><dt><strong>BINARY_FIELDS</strong> = ['data']</dl>
 
 <dl><dt><strong>FIELDS</strong> = ['filename', 'hostname', 'checksum', 'encrypted', 'mode', 'owner', 'group', 'data']</dl>
 
@@ -306,6 +308,12 @@ Methods inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedi
 
 <hr>
 Class methods inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>:<br>
+<dl><dt><a name="NetFetchFile-connect"><strong>connect</strong></a>(redisConnectionParams)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>connect&nbsp;-&nbsp;Create&nbsp;a&nbsp;class&nbsp;of&nbsp;this&nbsp;model&nbsp;which&nbsp;will&nbsp;use&nbsp;an&nbsp;alternate&nbsp;connection&nbsp;than&nbsp;the&nbsp;one&nbsp;specified&nbsp;by&nbsp;REDIS_CONNECTION_PARAMS&nbsp;on&nbsp;this&nbsp;model.<br>
+&nbsp;<br>
+@param&nbsp;redisConnectionParams&nbsp;&lt;dict&gt;&nbsp;-&nbsp;Dictionary&nbsp;of&nbsp;arguments&nbsp;to&nbsp;redis.Redis,&nbsp;same&nbsp;as&nbsp;REDIS_CONNECTION_PARAMS.<br>
+&nbsp;<br>
+@return&nbsp;-&nbsp;A&nbsp;class&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;all&nbsp;the&nbsp;same&nbsp;ways&nbsp;as&nbsp;the&nbsp;existing&nbsp;<a href="IndexedRedis.html#IndexedRedisModel">IndexedRedisModel</a>,&nbsp;but&nbsp;that&nbsp;connects&nbsp;to&nbsp;a&nbsp;different&nbsp;instance.</tt></dd></dl>
+
 <dl><dt><a name="NetFetchFile-reset"><strong>reset</strong></a>(newValues)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt></dl>
 
 <dl><dt><a name="NetFetchFile-validateModel"><strong>validateModel</strong></a>()<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>validateModel&nbsp;-&nbsp;Class&nbsp;method&nbsp;that&nbsp;validates&nbsp;a&nbsp;given&nbsp;model&nbsp;is&nbsp;implemented&nbsp;correctly.&nbsp;Will&nbsp;only&nbsp;be&nbsp;validated&nbsp;once,&nbsp;on&nbsp;first&nbsp;model&nbsp;instantiation.<br>
@@ -326,6 +334,8 @@ Data descriptors inherited from <a href="IndexedRedis.html#IndexedRedisModel">In
 </dl>
 <hr>
 Data and other attributes inherited from <a href="IndexedRedis.html#IndexedRedisModel">IndexedRedis.IndexedRedisModel</a>:<br>
+<dl><dt><strong>BASE64_FIELDS</strong> = []</dl>
+
 <dl><dt><strong>REDIS_CONNECTION_PARAMS</strong> = {}</dl>
 
 <dl><dt><strong>deleter</strong> = &lt;IndexedRedis.IndexedRedisDelete object&gt;</dl>
@@ -410,5 +420,6 @@ Data descriptors inherited from <a href="builtins.html#BaseException">builtins.B
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>__all__</strong> = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')</td></tr></table>
+<td width="100%"><strong>__all__</strong> = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')<br>
+<strong>__version_tuple__</strong> = ('2', '0', '0')</td></tr></table>
 </body></html>

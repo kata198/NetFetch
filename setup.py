@@ -22,14 +22,14 @@ if __name__ == '__main__':
     if dirName and os.getcwd() != dirName:
         os.chdir(dirName)
     try:
-        with open('README.rst', 'r') as f:
+        with open('README.rst', 'rt') as f:
             long_description = f.read()
     except:
         sys.stderr.write('Failed to find README.rst for full description! Falling back to summary.\n')
         long_description = summary
 
     setup(name='NetFetch',
-            version='1.0.0',
+            version='2.0.0',
             packages=['NetFetch'],
             scripts=['netFetchPut', 'netFetchGet'],
             author='Tim Savannah',

@@ -29,6 +29,8 @@ def printUsage():
 
       --config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
+      --old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+
     Provided filename must be an absolute path.
 
  Example: netFetchGet filestore01 /Data/myfile.db
@@ -48,6 +50,11 @@ if __name__ == '__main__':
         sys.argv.remove('--password')
         args.remove('--password')
         isPromptPassword = True
+
+    if '--old-format' in args:
+        sys.argv.remove('--old-format')
+        args.remove('--old-format')
+        NetFetchFile.toggleOldFormat(True)
     
     for arg in args:
         if arg.startswith('--password-file='):
