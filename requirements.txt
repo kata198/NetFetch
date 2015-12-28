@@ -1,2 +1,2 @@
-IndexedRedis
+IndexedRedis>=2.9.0
 cryptography

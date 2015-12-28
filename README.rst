@@ -103,6 +103,8 @@ Version 2.0 updated the storage format to a much more efficient form (directly s
 
 To Migrate, fetch any files using "--old-format", and then store them back without that flag. There is not an automatic util, because of encryption.
 
+Version 2.0 also depends on IndexedRedis of at least version 2.9.0
+
 
 API
 ---

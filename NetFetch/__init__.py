@@ -16,9 +16,9 @@ from hashlib import md5
 
 __all__ = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')
 
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
-__version_tuple__ = ('2', '0', '0')
+__version_tuple__ = ('2', '0', '1')
 
 def setRedisConnectionParams(redisParams):
     NetFetchFile.REDIS_CONNECTION_PARAMS = redisParams
