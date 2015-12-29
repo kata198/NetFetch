@@ -29,7 +29,7 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='NetFetch',
-            version='2.0.1',
+            version='2.0.2',
             packages=['NetFetch'],
             scripts=['netFetchPut', 'netFetchGet'],
             author='Tim Savannah',

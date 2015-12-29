@@ -1,3 +1,6 @@
+* 2.0.2 Dec 29 2015
+- Cleanup README.rst a bit and update a help string that didn't make much sense.
+
 * 2.0.1 Release    Dec 28 2015
 - *BACKWARDS INCOMPATIBLE CHANGE* directly store as binary instead of using
 base64 encoding/decoding, for vast speedups and space improvements. See README

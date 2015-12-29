@@ -17,25 +17,26 @@ Store files using *netFetchPut*.
 
 	Usage: netFetchPut (options) [absolute filename]
 
-		  Stores a given file in NetFetch, optionally password-protecting it as well.
+		  Stores a given file in NetFetch, optionally password\-protecting it as well.
 
 
 		Options:
 
 
-			--password                 Prompt for password on storing this file
+			\-\-password                 Prompt for password on storing this file
 
-			--password-file=fname      Read password from a given filename instead of tty. Implies --password.
+
+			\-\-password\-file=fname      Read password from a given filename instead of tty. Implies \-\-password.
 
 			
 
-			--no-preserve              Do not store owner/group/mode information
+			\-\-no\-preserve              Do not store owner/group/mode information
 
 
-			--config=/path/x.txt       Use provided config for redis. Default is to look in /etc/netfetch.cfg
+			\-\-config=/path/x.txt       Use provided config for redis. Default is to look in /etc/netfetch.cfg
 
 
-			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+			\-\-old\-format                Use Version 1.0 format (base64\-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
 
 
 		Provided filename must be an absolute path.
@@ -52,24 +53,26 @@ Retrieve files using *netFetchGet*
 
 		Downloads a file uploaded from hostname, given an absolute filename.
 
-		If "output filename" is "--", output will be to stdout. 
+		If "output filename" is "\-\-", output will be to stdout. 
 
 
 		Options:
 
 
-			--password                  Prompts for password. If file is encrypted, a password must be provided.
+			\-\-password                  Prompts for password. If file is encrypted, a password must be provided.
 
-			--password-file=fname       Read password from a given filename instead of tty. Implies --password.
+
+			\-\-password\-file=fname       Read password from a given filename instead of tty. Implies \-\-password.
 
 		  
 
-			--no-preserve               Do not apply stored attributes (owner/group/mode)
+			\-\-no\-preserve               Do not apply stored attributes (owner/group/mode)
 
 
-			--config=/path/config.cfg   Use provided config for redis. Default is to look in /etc/netfetch.cfg
+			\-\-config=/path/config.cfg   Use provided config for redis. Default is to look in /etc/netfetch.cfg
 
-			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+
+			\-\-old\-format                Use Version 1.0 format (base64\-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
 
 
 		Provided filename must be an absolute path.
@@ -82,7 +85,7 @@ Retrieve files using *netFetchGet*
 Configuration
 -------------
 
-The Redis server on which to connect is specified by a config file. The applications will check first $HOME/.netfetch.cfg, then /etc/netfetch.cfg if a --config=/path/to/netfetch.cfg is not provided.
+The Redis server on which to connect is specified by a config file. The applications will check first $HOME/.netfetch.cfg, then /etc/netfetch.cfg if a \-\-config=/path/to/netfetch.cfg is not provided.
 
 
 Example Configuration:
@@ -98,10 +101,10 @@ Example Configuration:
 Backwards Incompatible Changes
 ------------------------------
 
-Version 2.0 updated the storage format to a much more efficient form (directly stores instead of base64-encoding/decoding). This makes everything much faster and take up less space, but is incompatible with versions prior to 2.0. To fetch/put a file using the old format, use "--old-format" with netFetchGet/netFetchPut.
+Version 2.0 updated the storage format to a much more efficient form (directly stores instead of base64\-encoding/decoding). This makes everything much faster and take up less space, but is incompatible with versions prior to 2.0. To fetch/put a file using the old format, use "\-\-old\-format" with netFetchGet/netFetchPut.
 
 
-To Migrate, fetch any files using "--old-format", and then store them back without that flag. There is not an automatic util, because of encryption.
+To Migrate, fetch any files using "\-\-old\-format", and then store them back without that flag. There is not an automatic util, because of encryption.
 
 Version 2.0 also depends on IndexedRedis of at least version 2.9.0
 

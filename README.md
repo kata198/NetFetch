@@ -24,7 +24,7 @@ Store files using *netFetchPut*.
 
 			--config=/path/x.cfg       Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
-			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+			--old-format               Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
 
 		Provided filename must be an absolute path.
 
@@ -48,7 +48,7 @@ Retrieve files using *netFetchGet*
 
 			--config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
-			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with older formats.
+			--old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
 
 		Provided filename must be an absolute path.
 
