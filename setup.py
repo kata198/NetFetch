@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2015 Tim Savannah GPLv3 + attribution clause. See LICENSE for more information.
+# Copyright (c) 2015, 2017 Tim Savannah GPLv3 + attribution clause. See LICENSE for more information.
 # 
 #  Installation for NetFetch
 #vim: set ts=4 sw=4 expandtab
@@ -15,7 +15,7 @@ except:
 
 
 
-summary = 'Networked file storage and retrieval with optional password protection using Redis'
+summary = 'Networked file storage and retrieval with optional password protection and compression using Redis'
 
 if __name__ == '__main__':
     dirName = os.path.dirname(__file__)
