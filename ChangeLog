@@ -1,3 +1,9 @@
+* 3.0.3 May 13 2017
+- Ugg... lzma support is only on IndexedRedis >= 5.0.0 , so raise minimum
+version.. which was already in requirements.txt, but setup.py had 4.0.0
+- Update requirements.txt to use a python selector to install backports.lzma
+if python_version < '3.0'
+
 * 3.0.2 May 13 2017
 - Add backports.lzma as a depdendency on python2 as python2 doesn't ship with
 a builtin lzma module. This is better than just warning that it's not
@@ -14,7 +20,10 @@ convert.
 too if lzma compression is commented out, but that's not the official release.
 - Support for compression. --compress can be specified, or --compress=MODE
 when using netfetchPut . Default is lzma, which is provided on python3 but
-requires an external module on python2. Alternates MODE can be lzma/xz ,
+requires an external module on python2 (UPDATE: backports.lzma IS NOW A
+DEPENDENCY STARTING WITH 3.0.2, SO DISREGARDN THIS).
+
+Alternates MODE can be lzma/xz ,
 gzip/gz , bzip2/bz2. Only need to be specified on Put, Get will automatically
 detect and decompress (if required).
 - Some code cleanups
