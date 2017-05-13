@@ -1,7 +1,7 @@
 NetFetch
 ========
 
-Networked file storage and retrieval with optional password protection using Redis.
+Networked file storage and retrieval with optional password protection and compression using Redis.
 
 
 Files are stored with a key of originating hostname and an absolute path to filename.
@@ -36,10 +36,23 @@ Store files using *netFetchPut*.
 			\-\-config=/path/x.txt       Use provided config for redis. Default is to look in /etc/netfetch.cfg
 
 
-			\-\-old\-format                Use Version 1.0 format (base64\-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
+			\-\-compress(=mode)          Compress the file data for storage (and decompress after fetch).
+
+									   Default compression mode is lzma. This is supposed native on python3, requires
+
+									   an external module on python2. Use just --compress for this default mode.
+
+									   You can specify an alternate mode by appending =MODE after --compress.
+
+									   Supported modes are: 'lzma' (aka xz)   'gzip'   'bzip2'
 
 
-		Provided filename must be an absolute path.
+
+	Provided filename is treated as an absolute path. You can use a relative path, but it will be expanded
+
+	  to absolute for storage. Upon fetch, you can use the same relative path, so long as it resolves
+
+	  to the same absolute location. It is safest to just specify an absolute path yourself.
 
 
 	Example: netFetchPut /Data/myfile.db
@@ -72,14 +85,40 @@ Retrieve files using *netFetchGet*
 			\-\-config=/path/config.cfg   Use provided config for redis. Default is to look in /etc/netfetch.cfg
 
 
-			\-\-old\-format                Use Version 1.0 format (base64\-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
+	Provided filename is treated as an absolute path. You can use a relative path, but it will be expanded
 
+	  to absolute for storage. Upon fetch, you can use the same relative path, so long as it resolves
 
-		Provided filename must be an absolute path.
+	  to the same absolute location. It is safest to just specify an absolute path yourself.
 
 
 	Example: netFetchGet filestore01 /Data/myfile.db
 
+**Delete**
+
+Delete files using *netFetchDelete*
+
+	Usage: netFetchDelete (options) [hostname] [filename]
+
+	  Deletes a NetFetch file off of provided hostname.
+
+
+
+		Options:
+
+
+		  --config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
+
+
+
+		Provided filename is treated as an absolute path. You can use a relative path, but it will be expanded
+
+		  to absolute for storage. Upon fetch, you can use the same relative path, so long as it resolves
+
+		  to the same absolute location. It is safest to just specify an absolute path yourself.
+
+
+	 Example: netFetchDelete filestore01 /Data/myfile.db
 
 
 Configuration
@@ -98,8 +137,21 @@ Example Configuration:
 
 	db=1
 
+
+Compression
+-----------
+
+Version 3.0 supports compression. This is provided during netFetchPut by the "--compress" flag, which defaults to lzma. To use a different compression mode, specify "--compress=MODE" where MODE is one of lzma/xz , gzip/gz , bzip2/bz2 .
+
+Compression only need be specified on put, get will automatically detect which mode and decompress the results.
+
 Backwards Incompatible Changes
 ------------------------------
+
+Version 3.0 requires IndexedRedis > 5.0.0 and < 7.0.0. If you must use a version less-than 5.0.0, use version 2.0.3.
+
+The data format used by 3.0 is compatible with version 2.0 data format, but has dropped support for 1.x format. Everything henceforth should be forward-compatible with all future versions.
+
 
 Version 2.0 updated the storage format to a much more efficient form (directly stores instead of base64\-encoding/decoding). This makes everything much faster and take up less space, but is incompatible with versions prior to 2.0. To fetch/put a file using the old format, use "\-\-old\-format" with netFetchGet/netFetchPut.
 
