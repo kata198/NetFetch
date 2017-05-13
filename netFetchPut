@@ -7,10 +7,12 @@
 
 import os
 import sys
+import re
 
 import getpass
 
-from NetFetch import NetFetchFile, setRedisConnectionParams
+from NetFetch import ( NetFetchFile, setRedisConnectionParams, \
+            NetFetchCompressedLzmaFile, NetFetchCompressedGzipFile, NetFetchCompressedBzip2File )
 from NetFetch.config import getRedisConnectionParams
 from NetFetch.client_utils import readPasswordFromFilename, findDefaultConfigFilename
 
@@ -29,7 +31,12 @@ def printUsage():
 
       --config=/path/x.cfg       Use provided config for redis. Default is to look in ~/.netfetch.cfg then  /etc/netfetch.cfg
 
-      --old-format               Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
+      --compress(=mode)          Compress the file data for storage (and decompress after fetch).
+                                   Default compression mode is lzma. This is supposed native on python3, requires
+                                   an external module on python2. Use just --compress for this default mode.
+                                   You can specify an alternate mode by appending =MODE after --compress.
+                                   Supported modes are: 'lzma' (aka xz)   'gzip'   'bzip2'
+
 
     Provided filename must be an absolute path.
 
@@ -38,7 +45,7 @@ def printUsage():
     
 
 if __name__ == '__main__':
-    args = set(sys.argv[1:])
+    args = sys.argv[1:]
     if not args or '--help' in args:
         printUsage()
         sys.exit(1)
@@ -52,38 +59,55 @@ if __name__ == '__main__':
         isPromptPassword = True
 
 
-    if '--old-format' in args:
-        sys.argv.remove('--old-format')
-        args.remove('--old-format')
-        NetFetchFile.toggleOldFormat(True)
-    
+    configFilename = ''
 
-    for arg in args:
+    NetFetchModel = NetFetchFile
+
+    for arg in args[:]:
         if arg.startswith('--password-file='):
+
             isPromptPassword = False
             sys.argv.remove(arg)
             args.remove(arg)
             passwordFilename = arg[len('--password-file='):]
             password = readPasswordFromFilename(passwordFilename)
-            break
 
-    if '--no-preserve' in args:
-        args.remove('--no-preserve')
-        isPreserveAttributes = False
+        elif arg == '--no-preserve':
 
-    configFilename = ''
+            args.remove('--no-preserve')
+            isPreserveAttributes = False
 
-    for arg in args:
-        if arg.startswith('--config='):
+        elif arg.startswith('--config='):
+
             configFilename = arg[len('--config='):]
             if not os.path.isfile(configFilename):
                 sys.stderr.write('Cannot find provided config file, "%s"\n' %(configFilename,))
                 sys.exit(1)
-            break
+            args.remove(arg)
 
-    if configFilename:
-        args.remove('--config=' + configFilename)
-    else:
+        elif arg.startswith('--compress'):
+            
+            matchObj = re.match('^--compress=(?P<compress_mode>.+)$', arg)
+            if not matchObj:
+                NetFetchModel = NetFetchCompressedLzmaFile
+            else:
+                compress_mode = matchObj.groupdict()['compress_mode']
+
+                if compress_mode in ('gzip', 'gz'):
+                    NetFetchModel = NetFetchCompressedGzipFile
+                elif compress_mode in ('bzip2', 'bz2'):
+                    NetFetchModel = NetFetchCompressedBzip2File
+                elif compress_mode in ('lzma', 'xz'):
+                    NetFetchModel = NetFetchCompressedLzmaFile
+                else:
+                    sys.stderr.write('Unknown compression mode: "%s"\nSupported compression modes are: "lzma",  "bzip2",  "gzip"\n')
+                    sys.exit(1)
+
+            args.remove(arg)
+
+
+
+    if not configFilename:
         configFilename = findDefaultConfigFilename()
         if not configFilename:
             sys.stderr.write('No config file provided, and none found in default locations of $HOME/.netfetch.cfg or /etc/netfetch.cfg. Please provide one with --config=/path/to/netfetch.cfg\n')
@@ -129,9 +153,11 @@ if __name__ == '__main__':
                 sys.stderr.write('No password provided. Try again.\n')
             else:
                 break
+    
+    
 
     try:
-        NetFetchFile.createOrUpdateFromFile(filename, password=password, savePermissions=isPreserveAttributes)
+        NetFetchModel.createOrUpdateFromFile(filename, password=password, savePermissions=isPreserveAttributes)
     except ValueError as e:
         sys.stderr.write('Failed to store file: %s\n' %(str(e),))
         sys.exit(1)

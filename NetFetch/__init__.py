@@ -10,13 +10,15 @@ import socket
 
 import IndexedRedis
 
-from IndexedRedis.fields import IRField, IRBytesField
+from IndexedRedis.fields import IRField, IRBytesField, IRFieldChain, IRCompressedField
 
 from cryptography.fernet import Fernet
 from hashlib import md5
 
 
-__all__ = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')
+__all__ = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams'
+            'NetFetchCompressedLzmaFile', 'NetFetchCompressedGzipFile', 'NetFetchCompressedBzip2File'
+)
 
 __version__ = '2.0.3'
 
@@ -40,6 +42,11 @@ class InvalidPasswordException(Exception):
     pass
 
 
+NETFETCH_TYPE_PLAIN = 0
+NETFETCH_TYPE_COMPRESSED_LZMA  = 1
+NETFETCH_TYPE_COMPRESSED_GZIP  = 2
+NETFETCH_TYPE_COMPRESSED_BZIP2 = 3
+
 
 class NetFetchFile(IndexedRedis.IndexedRedisModel):
     '''
@@ -52,6 +59,8 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
             May be encrypted with a password, in which case "encrypted" is set to "1".
     '''
 
+    NETFETCH_TYPE = NETFETCH_TYPE_PLAIN
+
     FIELDS = [
         IRField('filename'),
         IRField('hostname'),
@@ -60,6 +69,7 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
         IRField('mode'),
         IRField('owner'),
         IRField('group'),
+        IRField('netfetchType', valueType=int, defaultValue=NETFETCH_TYPE_PLAIN),
         IRBytesField('data'),
     ]
 
@@ -157,6 +167,25 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
         '''
         return bool(cls.objects.filter(filename=filename, hostname=hostname).count() > 0)
 
+
+    @staticmethod
+    def getNetFetchClassForKey(primaryKey):
+        try:
+            netfetchType = NetFetchFile.objects.getOnlyFields(primaryKey, ['netfetchType']).netfetchType
+        except:
+            raise NoSuchNetFetchFile('Failed to fetch object.')
+
+        if netfetchType == NETFETCH_TYPE_PLAIN:
+            return NetFetchFile
+        elif netfetchType == NETFETCH_TYPE_COMPRESSED_LZMA:
+            return NetFetchCompressedLzmaFile
+        elif netfetchType == NETFETCH_TYPE_COMPRESSED_GZIP:
+            return NetFetchCompressedGzipFile
+        elif netfetchType == NETFETCH_TYPE_COMPRESSED_BZIP2:
+            return NetFetchCompressedBzip2File
+
+        return NetFetchFile
+
     @classmethod
     def downloadToLocal(cls, hostname, filename, password=None, localFilename=None, retainPermissions=True):
         '''
@@ -173,12 +202,19 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
         '''
         if not localFilename:
             localFilename = filename
-        
-        obj = cls.objects.filter(hostname=hostname, filename=filename).all()
-        if not obj:
+
+        primaryKeys = list(cls.objects.filter(hostname=hostname, filename=filename).getPrimaryKeys())
+        if not primaryKeys:
             raise NoSuchNetFetchFile('No file matching hostname="%s" filename="%s"' %(hostname, filename))
 
-        obj = obj[0]
+        primaryKey = primaryKeys[0]
+
+        fetchClass = cls.getNetFetchClassForKey(primaryKey)
+
+        obj = fetchClass.objects.get(primaryKey)
+        if not obj:
+            raise NoSuchNetFetchFile('Failed to fetch object.')
+
         data = obj.getData(password)
         with open(localFilename, 'wb') as f:
             f.write(data)
@@ -218,11 +254,18 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
             @raises NoSuchNetFetchFile - If no hostname/filename match exists
             @raises InvalidPasswordException - If password was invalid, see getData for all conditions.
         '''
-        obj = cls.objects.filter(hostname=hostname, filename=filename).all()
-        if not obj:
+        primaryKeys = list(cls.objects.filter(hostname=hostname, filename=filename).getPrimaryKeys())
+        if not primaryKeys:
             raise NoSuchNetFetchFile('No file matching hostname="%s" filename="%s"' %(hostname, filename))
 
-        obj = obj[0]
+        primaryKey = primaryKeys[0]
+
+        fetchClass = cls.getNetFetchClassForKey(primaryKey)
+
+        obj = fetchClass.objects.get(primaryKey)
+        if not obj:
+            raise NoSuchNetFetchFile('Failed to fetch object.')
+
         data = obj.getData(password)
         return data
 
@@ -296,6 +339,16 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
                 existing.owner = owner
             if group not in (None, ''):
                 existing.group = group
+
+            existing.netfetchType = cls.NETFETCH_TYPE
+
+            if existing.netfetchType != cls.NETFETCH_TYPE:
+                # NOTE: IndexedRedis doesn't have support for toStorage repr changing, only
+                #  converted change for update, so for now we have to force a change to be seen
+                if existing._origData.get('data', None) != b'':
+                    existing._origData['data'] = b''
+                else:
+                    existing._origData['data'] = b'x'
 
             existing.setData(data)
             if password:
@@ -374,4 +427,53 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
             @param data <bytes> - Data to check
         '''
         return md5(data).hexdigest()
+
+
+class NetFetchCompressedLzmaFile(NetFetchFile):
+
+    NETFETCH_TYPE = NETFETCH_TYPE_COMPRESSED_LZMA
+
+    FIELDS = [
+        IRField('filename'),
+        IRField('hostname'),
+        IRField('checksum'),
+        IRField('encrypted'),
+        IRField('mode'),
+        IRField('owner'),
+        IRField('group'),
+        IRField('netfetchType', valueType=int, defaultValue=NETFETCH_TYPE_COMPRESSED_LZMA),
+        IRFieldChain('data', [IRBytesField(), IRCompressedField(compressMode='lzma')] ),
+    ]
+
+class NetFetchCompressedGzipFile(NetFetchFile):
+
+    NETFETCH_TYPE = NETFETCH_TYPE_COMPRESSED_GZIP
+
+    FIELDS = [
+        IRField('filename'),
+        IRField('hostname'),
+        IRField('checksum'),
+        IRField('encrypted'),
+        IRField('mode'),
+        IRField('owner'),
+        IRField('group'),
+        IRField('netfetchType', valueType=int, defaultValue=NETFETCH_TYPE_COMPRESSED_GZIP),
+        IRFieldChain('data', [IRBytesField(), IRCompressedField(compressMode='gzip')] ),
+    ]
+
+class NetFetchCompressedBzip2File(NetFetchFile):
+
+    NETFETCH_TYPE = NETFETCH_TYPE_COMPRESSED_BZIP2
+
+    FIELDS = [
+        IRField('filename'),
+        IRField('hostname'),
+        IRField('checksum'),
+        IRField('encrypted'),
+        IRField('mode'),
+        IRField('owner'),
+        IRField('group'),
+        IRField('netfetchType', valueType=int, defaultValue=NETFETCH_TYPE_COMPRESSED_BZIP2),
+        IRFieldChain('data', [IRBytesField(), IRCompressedField(compressMode='bzip2')] ),
+    ]
 

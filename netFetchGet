@@ -7,6 +7,7 @@
 
 import os
 import sys
+import traceback
 
 import getpass
 
@@ -29,7 +30,6 @@ def printUsage():
 
       --config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
-      --old-format                Use Version 1.0 format (base64-encoded) instead of directly encoded. This is much slower, but added because 1.0 data format is incompatible with the new format.
 
     Provided filename must be an absolute path.
 
@@ -37,7 +37,8 @@ def printUsage():
 ''')
 
 if __name__ == '__main__':
-    args = set(sys.argv[1:])
+    args = sys.argv[1:]
+
     if '--help' in args or len(args) == 0:
         printUsage()
         sys.exit(1)
@@ -45,41 +46,33 @@ if __name__ == '__main__':
     password = None
     isPromptPassword = False
     isPreserveAttributes = True
+    configFilename = None
 
-    if '--password' in args:
-        sys.argv.remove('--password')
-        args.remove('--password')
-        isPromptPassword = True
+    for arg in args[:]:
+        if arg == '--password':
 
-    if '--old-format' in args:
-        sys.argv.remove('--old-format')
-        args.remove('--old-format')
-        NetFetchFile.toggleOldFormat(True)
-    
-    for arg in args:
-        if arg.startswith('--password-file='):
+            args.remove('--password')
+            isPromptPassword = True
+
+        elif arg.startswith('--password-file='):
+
             isPromptPassword = False
-            sys.argv.remove(arg)
             args.remove(arg)
             passwordFilename = arg[len('--password-file='):]
             password = readPasswordFromFilename(passwordFilename)
-            break
 
-    if '--no-preserve' in args:
-        sys.argv.remove('--no-preserve')
-        args.remove('--no-preserve')
-        isPreserveAttributes = False
+        elif arg == '--no-preserve':
 
-    configFilename = None
+            args.remove('--no-preserve')
+            isPreserveAttributes = False
 
-    for arg in args:
-        if arg.startswith('--config='):
+        elif arg.startswith('--config='):
+
             configFilename = arg[len('--config='):]
-            sys.argv.remove(arg)
+            args.remove(arg)
             if not os.path.isfile(configFilename):
                 sys.stderr.write('Cannot find provided config file, "%s"\n' %(configFilename,))
                 sys.exit(5)
-            break
 
     if not configFilename:
         configFilename = findDefaultConfigFilename()
@@ -92,7 +85,7 @@ if __name__ == '__main__':
         sys.stderr.write('Config file %s does not exist! Specify an alternative with --config=/path/to/file.cfg?\n' %(configFilename,))
         sys.exit(5)
 
-    numArgs = len(sys.argv) - 1
+    numArgs = len(args)
     if numArgs != 3:
         if numArgs <= 2:
             sys.stderr.write('Too few arguments.\n\n')
@@ -111,11 +104,10 @@ if __name__ == '__main__':
 
     setRedisConnectionParams(redisConnectionParams)
 
-
     
-    hostname = sys.argv[1]
-    filename = sys.argv[2]
-    localFilename = sys.argv[3]
+    hostname = args[0]
+    filename = args[1]
+    localFilename = args[2]
 
     if isPromptPassword:
         password = getpass.getpass()
@@ -133,6 +125,9 @@ if __name__ == '__main__':
         sys.stderr.write(str(e) + '\n')
         sys.exit(3)
     except Exception as e:
+        exc_info = sys.exc_info()
         sys.stderr.write(str(e) + '\n')
+        traceback.print_exception(*exc_info)
+
         sys.exit(4)
 
