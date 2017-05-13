@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Tim Savannah GPLv3 + attribution clause. See LICENSE for more information.
+# Copyright (c) 2015, 2017 Tim Savannah GPLv3 + attribution clause. See LICENSE for more information.
 # 
 #  This file contains the model and methods for using NetFetch
 
@@ -16,9 +16,9 @@ from hashlib import md5
 
 __all__ = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')
 
-__version__ = '2.0.2'
+__version__ = '2.0.3'
 
-__version_tuple__ = ('2', '0', '2')
+__version_tuple__ = ('2', '0', '3')
 
 def setRedisConnectionParams(redisParams):
     NetFetchFile.REDIS_CONNECTION_PARAMS = redisParams

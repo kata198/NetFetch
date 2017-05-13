@@ -1,3 +1,10 @@
+* 2.0.3 May 13 2017
+- Update the 2.0.x requirements.txt to require IndexedRedis < 4.0.0, to
+prevent breakage with backwards-incompatible changes on newer IndexedRedis.
+
+Next version will update to latest IndexedRedis.
+
+
 * 2.0.2 Dec 29 2015
 - Cleanup README.rst a bit and update a help string that didn't make much sense.
 
