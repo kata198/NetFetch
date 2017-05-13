@@ -28,6 +28,13 @@ if __name__ == '__main__':
         sys.stderr.write('Failed to find README.rst for full description! Falling back to summary.\n')
         long_description = summary
 
+    # If python2, go ahead and ensure lzma support is added, which is the default compression
+    #   mode used.
+    if sys.version_info.major < 3:
+        extra_install_requires = ['backports.lzma']
+    else:
+        extra_install_requires = []
+
     setup(name='NetFetch',
             version='3.0.1',
             packages=['NetFetch'],
@@ -40,8 +47,8 @@ if __name__ == '__main__':
             description=summary,
             long_description=long_description,
             license='GPLv3',
-            requires=['IndexedRedis', 'cryptography'],
-            install_requires=['IndexedRedis>=4.0.0,<7.0.0', 'cryptography'],
+            requires=['IndexedRedis', 'cryptography'] + extra_install_requires,
+            install_requires=['IndexedRedis>=4.0.0,<7.0.0', 'cryptography'] + extra_install_requires,
             keywords=['NetFetch', 'redis', 'file', 'storage', 'retrieval', 'put', 'get',' network', 'password', 'encrypt', 'netFetchPut', 'netFetchGet', 'server'],
             classifiers=['Development Status :: 5 - Production/Stable',
                          'Programming Language :: Python',

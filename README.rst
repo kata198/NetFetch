@@ -38,9 +38,9 @@ Store files using *netFetchPut*.
 
 			\-\-compress(=mode)          Compress the file data for storage (and decompress after fetch).
 
-									   Default compression mode is lzma. This is supposed native on python3, requires
+									   Default compression mode is lzma.
 
-									   an external module on python2. Use just --compress for this default mode.
+									   Use just --compress for this default mode.
 
 									   You can specify an alternate mode by appending =MODE after --compress.
 
@@ -141,9 +141,11 @@ Example Configuration:
 Compression
 -----------
 
-Version 3.0 supports compression. This is provided during netFetchPut by the "--compress" flag, which defaults to lzma. To use a different compression mode, specify "--compress=MODE" where MODE is one of lzma/xz , gzip/gz , bzip2/bz2 .
+Starting with version 3.0, NetFetch supports compression. This is provided during netFetchPut by the "--compress" flag.
 
-Compression only need be specified on put, get will automatically detect which mode and decompress the results.
+The default compression mode is lzma ( aka "lz" ). To use a different compression mode, specify "--compress=MODE" where MODE is one of lzma/xz , gzip/gz , bzip2/bz2 .
+
+Compression only need be specified on Put, Get will automatically detect which mode and decompress the results.
 
 Backwards Incompatible Changes
 ------------------------------
