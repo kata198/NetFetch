@@ -1,3 +1,17 @@
+* 3.0.0 May 13 2017
+- Compatible format with 2.0 series, but drops support for 1.x series (base64
+encoding). Use 2.0.3, fetch with --old-format, and save without that flag to
+convert.
+- Compatible with IndexedRedis > 5.0.0 and < 7.0.0. May work with 4.x series
+too if lzma compression is commented out, but that's not the official release.
+- Support for compression. --compress can be specified, or --compress=MODE
+when using netfetchPut . Default is lzma, which is provided on python3 but
+requires an external module on python2. Alternates MODE can be lzma/xz ,
+gzip/gz , bzip2/bz2. Only need to be specified on Put, Get will automatically
+detect and decompress (if required).
+- Some code cleanups
+- Add netfetchDelete which will allow deleting stored files
+
 * 2.0.3 May 13 2017
 - Update the 2.0.x requirements.txt to require IndexedRedis < 4.0.0, to
 prevent breakage with backwards-incompatible changes on newer IndexedRedis.
