@@ -1,3 +1,6 @@
+* 3.0.1 May 13 2017
+- Include netFetchDelete in MANIFEST.in and setup.py
+
 * 3.0.0 May 13 2017
 - Compatible format with 2.0 series, but drops support for 1.x series (base64
 encoding). Use 2.0.3, fetch with --old-format, and save without that flag to
@@ -10,7 +13,7 @@ requires an external module on python2. Alternates MODE can be lzma/xz ,
 gzip/gz , bzip2/bz2. Only need to be specified on Put, Get will automatically
 detect and decompress (if required).
 - Some code cleanups
-- Add netfetchDelete which will allow deleting stored files
+- Add netFetchDelete which will allow deleting stored files
 
 * 2.0.3 May 13 2017
 - Update the 2.0.x requirements.txt to require IndexedRedis < 4.0.0, to
