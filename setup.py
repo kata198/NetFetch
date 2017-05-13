@@ -29,7 +29,7 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='NetFetch',
-            version='2.0.3',
+            version='3.0.0',
             packages=['NetFetch'],
             scripts=['netFetchPut', 'netFetchGet'],
             author='Tim Savannah',
@@ -43,7 +43,7 @@ if __name__ == '__main__':
             requires=['IndexedRedis', 'cryptography'],
             install_requires=['IndexedRedis>=4.0.0,<7.0.0', 'cryptography'],
             keywords=['NetFetch', 'redis', 'file', 'storage', 'retrieval', 'put', 'get',' network', 'password', 'encrypt', 'netFetchPut', 'netFetchGet', 'server'],
-            classifiers=['Development Status :: 3 - Alpha',
+            classifiers=['Development Status :: 5 - Production/Stable',
                          'Programming Language :: Python',
                          'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
                          'Environment :: Console',
