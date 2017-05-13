@@ -36,7 +36,7 @@ if __name__ == '__main__':
         extra_install_requires = []
 
     setup(name='NetFetch',
-            version='3.0.1',
+            version='3.0.2',
             packages=['NetFetch'],
             scripts=['netFetchPut', 'netFetchGet', 'netFetchDelete'],
             author='Tim Savannah',
