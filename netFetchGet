@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     numArgs = len(sys.argv) - 1
     if numArgs != 3:
-        if numArgs < 2:
+        if numArgs <= 2:
             sys.stderr.write('Too few arguments.\n\n')
             printUsage()
         else:
