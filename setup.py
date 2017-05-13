@@ -41,7 +41,7 @@ if __name__ == '__main__':
             long_description=long_description,
             license='GPLv3',
             requires=['IndexedRedis', 'cryptography'],
-            install_requires=['IndexedRedis>=2.9.0,<4.0.0', 'cryptography'],
+            install_requires=['IndexedRedis>=4.0.0,<7.0.0', 'cryptography'],
             keywords=['NetFetch', 'redis', 'file', 'storage', 'retrieval', 'put', 'get',' network', 'password', 'encrypt', 'netFetchPut', 'netFetchGet', 'server'],
             classifiers=['Development Status :: 3 - Alpha',
                          'Programming Language :: Python',

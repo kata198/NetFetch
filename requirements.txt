@@ -1,2 +1,2 @@
-IndexedRedis>=2.9.0,<4.0.0
+IndexedRedis>=5.0.0,<7.0.0
 cryptography
