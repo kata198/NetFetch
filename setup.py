@@ -31,7 +31,7 @@ if __name__ == '__main__':
     setup(name='NetFetch',
             version='3.0.0',
             packages=['NetFetch'],
-            scripts=['netFetchPut', 'netFetchGet'],
+            scripts=['netFetchPut', 'netFetchGet', 'netFetchDelete'],
             author='Tim Savannah',
             author_email='kata198@gmail.com',
             maintainer='Tim Savannah',

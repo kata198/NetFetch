@@ -4,6 +4,7 @@ include INSTALL
 include LICENSE
 include netFetchGet
 include netFetchPut
+include netFetchDelete
 include README.md
 include README.rst
 include requirements.txt
