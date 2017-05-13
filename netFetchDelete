@@ -1,0 +1,105 @@
+#!/usr/bin/env python
+# Copyright (c) 2017 Tim Savannah GPLv3 + attribution clause. See LICENSE for more information.
+# 
+#  This file contains the application to delete files stored in NetFetch
+
+# vim: ts=4 sw=4 expandtab
+
+import os
+import sys
+import traceback
+
+import getpass
+
+from NetFetch import NetFetchFile, NoSuchNetFetchFile, InvalidPasswordException, setRedisConnectionParams
+from NetFetch.config import getRedisConnectionParams
+from NetFetch.client_utils import readPasswordFromFilename, findDefaultConfigFilename
+
+
+def printUsage():
+    sys.stderr.write('''Usage: netFetchDelete (options) [hostname] [filename]
+  Deletes a NetFetch file off of provided hostname.
+
+
+    Options:
+
+      --config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
+
+
+    Provided filename is treated as an absolute path. You can use a relative path, but it will be expanded
+      to absolute for storage. Upon fetch, you can use the same relative path, so long as it resolves
+      to the same absolute location. It is safest to just specify an absolute path yourself.
+
+ Example: netFetchDelete filestore01 /Data/myfile.db
+''')
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+
+    if '--help' in args or len(args) == 0:
+        printUsage()
+        sys.exit(1)
+
+    configFilename = None
+
+    for arg in args[:]:
+        if arg.startswith('--config='):
+
+            configFilename = arg[len('--config='):]
+            args.remove(arg)
+            if not os.path.isfile(configFilename):
+                sys.stderr.write('Cannot find provided config file, "%s"\n' %(configFilename,))
+                sys.exit(5)
+
+    if not configFilename:
+        configFilename = findDefaultConfigFilename()
+        if not configFilename:
+            sys.stderr.write('No config file provided, and none found in default locations of $HOME/.netfetch.cfg or /etc/netfetch.cfg. Please provide one with --config=/path/to/netfetch.cfg\n')
+            sys.exit(5)
+
+
+    if not os.path.isfile(configFilename):
+        sys.stderr.write('Config file %s does not exist! Specify an alternative with --config=/path/to/file.cfg?\n' %(configFilename,))
+        sys.exit(5)
+
+    numArgs = len(args)
+    if numArgs != 2:
+        if numArgs <= 1:
+            sys.stderr.write('Too few arguments.\n\n')
+            printUsage()
+        else:
+            sys.stderr.write('Too many arguments.\n\n')
+            printUsage()
+        sys.exit(1)
+
+
+    try:
+        redisConnectionParams = getRedisConnectionParams(configFilename)
+    except Exception as e:
+        sys.stderr.write('Error parsing config file: %s\n' %(configFilename,))
+        sys.exit(5)
+
+    setRedisConnectionParams(redisConnectionParams)
+
+    
+    hostname = args[0]
+    filename = args[1]
+
+    if not filename.startswith('/'):
+        filename = os.path.realpath(filename)
+
+    try:
+        didDelete = NetFetchFile.deleteFile(hostname, filename)
+        if didDelete:
+            print ( "File successfully deleted.")
+            sys.exit(0)
+        else:
+            sys.stderr.write('Could not file file on < %s >: "%s"\n' %(hostname, filename))
+            sys.exit(1)
+    except Exception as e:
+        exc_info = sys.exc_info()
+        sys.stderr.write(str(e) + '\n')
+        traceback.print_exception(*exc_info)
+
+        sys.exit(4)
+

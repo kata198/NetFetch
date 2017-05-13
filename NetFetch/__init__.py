@@ -269,6 +269,23 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
         data = obj.getData(password)
         return data
 
+    @classmethod
+    def deleteFile(cls, hostname, filename):
+        '''
+            deleteFile - Deletes a file from NetFetch storage.
+
+            @param hostname <str> - Hostname that file was stored on
+            @param filename <str> - Filename to delete
+
+            @return <bool> - True if a file was deleted, otherwise False
+
+        '''
+
+        numDeleted = cls.objects.filter(hostname=hostname, filename=filename).delete()
+
+        return bool(numDeleted)
+
+
     ###################################
     ##        Creation Methods       ##
     ###################################
