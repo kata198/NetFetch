@@ -41,7 +41,7 @@ class InvalidPasswordException(Exception):
     '''
     pass
 
-
+#NETFETCH_TYPE_* - Used for the netfetchType field to specify which model should be used on fetch
 NETFETCH_TYPE_PLAIN = 0
 NETFETCH_TYPE_COMPRESSED_LZMA  = 1
 NETFETCH_TYPE_COMPRESSED_GZIP  = 2
@@ -447,6 +447,9 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
 
 
 class NetFetchCompressedLzmaFile(NetFetchFile):
+    '''
+        NetFetchCompressedLzmaFile - Used for lzma compression on a NetFetchFile
+    '''
 
     NETFETCH_TYPE = NETFETCH_TYPE_COMPRESSED_LZMA
 
@@ -463,6 +466,9 @@ class NetFetchCompressedLzmaFile(NetFetchFile):
     ]
 
 class NetFetchCompressedGzipFile(NetFetchFile):
+    '''
+        NetFetchCompressedGzipFile - Used for gzip compression on a NetFetchFile
+    '''
 
     NETFETCH_TYPE = NETFETCH_TYPE_COMPRESSED_GZIP
 
@@ -479,6 +485,9 @@ class NetFetchCompressedGzipFile(NetFetchFile):
     ]
 
 class NetFetchCompressedBzip2File(NetFetchFile):
+    '''
+        NetFetchCompressedBzip2File - Used for bzip2 compression on a NetFetchFile
+    '''
 
     NETFETCH_TYPE = NETFETCH_TYPE_COMPRESSED_BZIP2
 

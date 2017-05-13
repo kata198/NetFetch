@@ -6,7 +6,7 @@
 <table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading" >
 <tr bgcolor="#7799ee" >
 <td valign="bottom" >&nbsp;<br />
-<font color="#ffffff" face="helvetica, arial" >&nbsp;<br /><big ><big ><strong >NetFetch</strong></big></big> (version 2.1.0)</font></td><td align="right" valign="bottom" ><font color="#ffffff" face="helvetica, arial" ><a href="NetFetch.html" >index</a></font></td></tr></table>
+<font color="#ffffff" face="helvetica, arial" >&nbsp;<br /><big ><big ><strong >NetFetch</strong></big></big> (version 3.0.0)</font></td><td align="right" valign="bottom" ><font color="#ffffff" face="helvetica, arial" ><a href="NetFetch.html" >index</a></font></td></tr></table>
     <p ><tt >#&nbsp;Copyright&nbsp;(c)&nbsp;2015,&nbsp;2017&nbsp;Tim&nbsp;Savannah&nbsp;GPLv3&nbsp;+&nbsp;attribution&nbsp;clause.&nbsp;See&nbsp;LICENSE&nbsp;for&nbsp;more&nbsp;information.<br />
 #&nbsp;<br />
 #&nbsp;&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;model&nbsp;and&nbsp;methods&nbsp;for&nbsp;using&nbsp;NetFetch</tt></p>
@@ -31,7 +31,13 @@
 </font></dt><dd >
 <dl >
 <dt ><font face="helvetica, arial" ><a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>
+</font></dt><dd >
+<dl >
+<dt ><font face="helvetica, arial" ><a href="NetFetch.html#NetFetchCompressedBzip2File" >NetFetchCompressedBzip2File</a>
+</font></dt><dt ><font face="helvetica, arial" ><a href="NetFetch.html#NetFetchCompressedGzipFile" >NetFetchCompressedGzipFile</a>
 </font></dt></dl>
+</dd>
+</dl>
 </dd>
 <dt ><font face="helvetica, arial" ><a href="builtins.html#Exception" >builtins.Exception</a>(<a href="builtins.html#BaseException" >builtins.BaseException</a>)
 </font></dt><dd >
@@ -104,6 +110,706 @@ Data descriptors inherited from <a href="builtins.html#BaseException" >builtins.
 </dl>
 <dl ><dt ><strong >args</strong></dt>
 </dl>
+</td></tr></table> <p >
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
+<tr bgcolor="#ffc8d8" >
+<td colspan="3" valign="bottom" >&nbsp;<br />
+<font color="#000000" face="helvetica, arial" ><a name="NetFetchCompressedBzip2File" >class <strong >NetFetchCompressedBzip2File</strong></a>(<a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8" ><td rowspan="2" ><tt >&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2" ><tt ><a href="#NetFetchCompressedBzip2File" >NetFetchCompressedBzip2File</a>&nbsp;-&nbsp;Used&nbsp;for&nbsp;bzip2&nbsp;compression&nbsp;on&nbsp;a&nbsp;<a href="#NetFetchFile" >NetFetchFile</a><br />&nbsp;</tt></td></tr>
+<tr ><td >&nbsp;</td>
+<td width="100%" ><dl ><dt >Method resolution order:</dt>
+<dd ><a href="NetFetch.html#NetFetchCompressedBzip2File" >NetFetchCompressedBzip2File</a></dd>
+<dd ><a href="NetFetch.html#NetFetchFile" >NetFetchFile</a></dd>
+<dd ><a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a></dd>
+<dd ><a href="builtins.html#object" >builtins.object</a></dd>
+</dl>
+<hr />
+Data and other attributes defined here:<br />
+<dl ><dt ><strong >FIELDS</strong> = [IRField( "filename", valueType=str, hashIndex=F..."bz2" ) ], hashIndex=True, defaultValue=irNull )]</dt></dl>
+
+<dl ><dt ><strong >NETFETCH_TYPE</strong> = 3</dt></dl>
+
+<hr />
+Methods inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedBzip2File-encryptData" ><strong >encryptData</strong></a>(self, password)</dt><dd ><tt >encryptData&nbsp;-&nbsp;Encrypts&nbsp;data&nbsp;on&nbsp;this&nbsp;object&nbsp;and&nbsp;sets&nbsp;'encrypted'&nbsp;flag.&nbsp;&nbsp;Does&nbsp;not&nbsp;save&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;password&nbsp;&lt;str&gt;&nbsp;4-32&nbsp;characters&nbsp;of&nbsp;password,&nbsp;used&nbsp;to&nbsp;encrypt.<br />
+&nbsp;<br />
+@raises&nbsp;-&nbsp;ValueError&nbsp;if&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;requirements</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-getData" ><strong >getData</strong></a>(self, password=None)</dt><dd ><tt >getData&nbsp;-&nbsp;Fetch&nbsp;the&nbsp;data&nbsp;associated&nbsp;with&nbsp;this&nbsp;file,&nbsp;and&nbsp;potentially&nbsp;decrypt.<br />
+&nbsp;<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;None&nbsp;if&nbsp;unencrypted,&nbsp;otherwise&nbsp;a&nbsp;password&nbsp;4-32&nbsp;chars.<br />
+&nbsp;<br />
+@return&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;file&nbsp;data<br />
+&nbsp;<br />
+@raises&nbsp;<a href="#InvalidPasswordException" >InvalidPasswordException</a>&nbsp;-&nbsp;The&nbsp;file&nbsp;was&nbsp;encrypted&nbsp;and&nbsp;a&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;or&nbsp;the&nbsp;file&nbsp;was&nbsp;not&nbsp;encrypted&nbsp;and&nbsp;a&nbsp;password&nbsp;was&nbsp;provided,&nbsp;or&nbsp;the&nbsp;file&nbsp;was&nbsp;encrypted&nbsp;and&nbsp;no&nbsp;password&nbsp;was&nbsp;provided.<br />
+@raises&nbsp;ValueError&nbsp;-&nbsp;If&nbsp;password&nbsp;is&nbsp;not&nbsp;4-32&nbsp;characters.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-setData" ><strong >setData</strong></a>(self, data)</dt><dd ><tt >setData&nbsp;-&nbsp;Store&nbsp;data&nbsp;on&nbsp;this&nbsp;object&nbsp;and&nbsp;calculates&nbsp;checksum.&nbsp;If&nbsp;a&nbsp;password&nbsp;is&nbsp;required,&nbsp;must&nbsp;also&nbsp;call&nbsp;encryptData.&nbsp;Does&nbsp;not&nbsp;save&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;store</tt></dd></dl>
+
+<hr />
+Class methods inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedBzip2File-create" ><strong >create</strong></a>(filename, data, mode='', owner='', group='', password=None, hostnameOverride=None)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >create&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br />
+@param&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;str<br />
+@param&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;String&nbsp;or&nbsp;int&nbsp;of&nbsp;base-8&nbsp;encoded&nbsp;chmod&nbsp;value.&nbsp;os.stat(x).st_mode&nbsp;returns&nbsp;this.<br />
+@param&nbsp;owner&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Username&nbsp;owner<br />
+@param&nbsp;group&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Associated&nbsp;group<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br />
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@raises&nbsp;KeyError&nbsp;if&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;already&nbsp;exists.&nbsp;use&nbsp;createOrUpdate&nbsp;to&nbsp;conditionally&nbsp;update&nbsp;it.<br />
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-createOrUpdate" ><strong >createOrUpdate</strong></a>(filename, data, mode='', owner='', group='', password=None, hostnameOverride=None)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >createOrUpdate&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object,&nbsp;or&nbsp;update&nbsp;an&nbsp;existing&nbsp;one.<br />
+&nbsp;<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br />
+@param&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;str<br />
+@param&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;String&nbsp;or&nbsp;int&nbsp;of&nbsp;base-8&nbsp;encoded&nbsp;chmod&nbsp;value.&nbsp;os.stat(x).st_mode&nbsp;returns&nbsp;this.<br />
+@param&nbsp;owner&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Username&nbsp;owner<br />
+@param&nbsp;group&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Associated&nbsp;group<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br />
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-createOrUpdateFromFile" ><strong >createOrUpdateFromFile</strong></a>(filename, password=None, hostnameOverride=None, savePermissions=True)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >createOrUpdateFromFile&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object,&nbsp;or&nbsp;update&nbsp;an&nbsp;existing&nbsp;one,&nbsp;provided&nbsp;with&nbsp;a&nbsp;filename.<br />
+&nbsp;<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br />
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br />
+@param&nbsp;savePermissions&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;will&nbsp;store&nbsp;owner/group/mode&nbsp;of&nbsp;file.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-deleteFile" ><strong >deleteFile</strong></a>(hostname, filename)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >deleteFile&nbsp;-&nbsp;Deletes&nbsp;a&nbsp;file&nbsp;from&nbsp;NetFetch&nbsp;storage.<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;delete<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;a&nbsp;file&nbsp;was&nbsp;deleted,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-downloadToLocal" ><strong >downloadToLocal</strong></a>(hostname, filename, password=None, localFilename=None, retainPermissions=True)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >downloadToLocal&nbsp;-&nbsp;Download&nbsp;file&nbsp;to&nbsp;a&nbsp;local&nbsp;filename<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;fetch<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;Try&nbsp;this&nbsp;password&nbsp;on&nbsp;potentially&nbsp;encrpyted&nbsp;file.<br />
+@param&nbsp;localFilename&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;If&nbsp;defined,&nbsp;saves&nbsp;at&nbsp;this&nbsp;location.&nbsp;Otherwise,&nbsp;saves&nbsp;at&nbsp;#filename<br />
+@param&nbsp;retainPermissions&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;tries&nbsp;to&nbsp;retain&nbsp;owner/group/mode.&nbsp;If&nbsp;owner/group,&nbsp;you&nbsp;must&nbsp;be&nbsp;root.&nbsp;Silently&nbsp;fails&nbsp;if&nbsp;can't&nbsp;apply.<br />
+&nbsp;<br />
+@raises&nbsp;<a href="#NoSuchNetFetchFile" >NoSuchNetFetchFile</a>&nbsp;-&nbsp;If&nbsp;no&nbsp;hostname/filename&nbsp;match&nbsp;exists<br />
+@raises&nbsp;<a href="#InvalidPasswordException" >InvalidPasswordException</a>&nbsp;-&nbsp;If&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;see&nbsp;getData&nbsp;for&nbsp;all&nbsp;conditions.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-downloadToStr" ><strong >downloadToStr</strong></a>(hostname, filename, password=None)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >downloadToStr&nbsp;-&nbsp;Download&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;and&nbsp;return&nbsp;as&nbsp;a&nbsp;string<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;fetch<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;Try&nbsp;this&nbsp;password&nbsp;on&nbsp;potentially&nbsp;encrpyted&nbsp;file.<br />
+&nbsp;<br />
+@return&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;that&nbsp;has&nbsp;been&nbsp;downloaded<br />
+&nbsp;<br />
+@raises&nbsp;<a href="#NoSuchNetFetchFile" >NoSuchNetFetchFile</a>&nbsp;-&nbsp;If&nbsp;no&nbsp;hostname/filename&nbsp;match&nbsp;exists<br />
+@raises&nbsp;<a href="#InvalidPasswordException" >InvalidPasswordException</a>&nbsp;-&nbsp;If&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;see&nbsp;getData&nbsp;for&nbsp;all&nbsp;conditions.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-exists" ><strong >exists</strong></a>(hostname, filename)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >exists&nbsp;-&nbsp;Check&nbsp;if&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;exists<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;field<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;field<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;If&nbsp;a&nbsp;file&nbsp;is&nbsp;stored&nbsp;under&nbsp;the&nbsp;hostname/filename&nbsp;key&nbsp;pair</tt></dd></dl>
+
+<hr />
+Static methods inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedBzip2File-calculateChecksum" ><strong >calculateChecksum</strong></a>(data)</dt><dd ><tt >calculateChecksum&nbsp;-&nbsp;Calculates&nbsp;a&nbsp;checksum&nbsp;from&nbsp;given&nbsp;data<br />
+&nbsp;<br />
+@param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;check</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-getNetFetchClassForKey" ><strong >getNetFetchClassForKey</strong></a>(primaryKey)</dt></dl>
+
+<hr />
+Data and other attributes inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><strong >INDEXED_FIELDS</strong> = ['filename', 'hostname']</dt></dl>
+
+<dl ><dt ><strong >KEY_NAME</strong> = 'NetFetchFile'</dt></dl>
+
+<hr />
+Methods inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__copy__" ><strong >__copy__</strong></a>(self)</dt><dd ><tt >&nbsp;__copy__&nbsp;-&nbsp;Used&nbsp;by&nbsp;the&nbsp;"copy"&nbsp;module&nbsp;to&nbsp;make&nbsp;a&nbsp;copy,<br />
+&nbsp;&nbsp;&nbsp;which&nbsp;will&nbsp;NOT&nbsp;be&nbsp;linked&nbsp;to&nbsp;the&nbsp;original&nbsp;entry&nbsp;in&nbsp;the&nbsp;database,&nbsp;but&nbsp;will&nbsp;contain&nbsp;the&nbsp;same&nbsp;data<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Copy&nbsp;of&nbsp;this&nbsp;object,&nbsp;per&nbsp;above</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__deepcopy__" ><strong >__deepcopy__</strong></a>(self, *args, **kwargs)</dt><dd ><tt >&nbsp;__deepcopy__&nbsp;-&nbsp;Used&nbsp;by&nbsp;the&nbsp;"copy"&nbsp;module&nbsp;to&nbsp;make&nbsp;a&nbsp;deepcopy.<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;Will&nbsp;perform&nbsp;a&nbsp;deepcopy&nbsp;of&nbsp;all&nbsp;attributes,&nbsp;which&nbsp;will&nbsp;NOT&nbsp;be&nbsp;linked&nbsp;to&nbsp;the&nbsp;original&nbsp;entry&nbsp;in&nbsp;the&nbsp;database.<br />
+&nbsp;<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;need&nbsp;a&nbsp;copy&nbsp;that&nbsp;IS&nbsp;linked,&nbsp;@see&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.copy<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Deep&nbsp;copy&nbsp;of&nbsp;this&nbsp;object,&nbsp;per&nbsp;above</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__eq__" ><strong >__eq__</strong></a>(self, other)</dt><dd ><tt >__eq__&nbsp;-&nbsp;Check&nbsp;if&nbsp;two&nbsp;IndexedRedisModels&nbsp;are&nbsp;equal.<br />
+&nbsp;<br />
+They&nbsp;are&nbsp;equal&nbsp;if&nbsp;they&nbsp;have&nbsp;the&nbsp;same&nbsp;type&nbsp;and&nbsp;same&nbsp;field&nbsp;values&nbsp;(including&nbsp;id).<br />
+&nbsp;<br />
+To&nbsp;check&nbsp;if&nbsp;two&nbsp;models&nbsp;have&nbsp;the&nbsp;same&nbsp;values&nbsp;(but&nbsp;can&nbsp;have&nbsp;different&nbsp;ids),&nbsp;use&nbsp;#hasSameValues&nbsp;method.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__getstate__" ><strong >__getstate__</strong></a>(self)</dt><dd ><tt >pickle&nbsp;uses&nbsp;this</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__init__" ><strong >__init__</strong></a>(self, *args, **kwargs)</dt><dd ><tt >__init__&nbsp;-&nbsp;Set&nbsp;the&nbsp;values&nbsp;on&nbsp;this&nbsp;object.&nbsp;MAKE&nbsp;SURE&nbsp;YOU&nbsp;CALL&nbsp;THE&nbsp;SUPER&nbsp;HERE,&nbsp;or&nbsp;else&nbsp;things&nbsp;will&nbsp;not&nbsp;work.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__ne__" ><strong >__ne__</strong></a>(self, other)</dt><dd ><tt >__ne__&nbsp;-&nbsp;Check&nbsp;if&nbsp;two&nbsp;IndexedRedisModels&nbsp;are&nbsp;NOT&nbsp;equal.<br />
+&nbsp;<br />
+@see&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.__eq__</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__repr__" ><strong >__repr__</strong></a>(self)</dt><dd ><tt >__repr__&nbsp;-&nbsp;Returns&nbsp;a&nbsp;string&nbsp;of&nbsp;the&nbsp;constructor/params&nbsp;to&nbsp;recreate&nbsp;this&nbsp;object.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Example:&nbsp;objCopy&nbsp;=&nbsp;eval(repr(obj))<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;String&nbsp;of&nbsp;python&nbsp;init&nbsp;call&nbsp;to&nbsp;recreate&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__setattr__" ><strong >__setattr__</strong></a>(self, keyName, value)</dt><dd ><tt >__setattr__&nbsp;-&nbsp;Will&nbsp;be&nbsp;used&nbsp;to&nbsp;set&nbsp;an&nbsp;attribute&nbsp;on&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+&nbsp;&nbsp;If&nbsp;the&nbsp;attribute&nbsp;is&nbsp;a&nbsp;field&nbsp;(in&nbsp;self.<strong >FIELDS</strong>),&nbsp;it&nbsp;will&nbsp;be&nbsp;converted&nbsp;via&nbsp;the&nbsp;field&nbsp;type's&nbsp;#fromInput&nbsp;method.<br />
+&nbsp;<br />
+&nbsp;&nbsp;Otherwise,&nbsp;it&nbsp;will&nbsp;just&nbsp;set&nbsp;the&nbsp;attribute&nbsp;on&nbsp;this&nbsp;object.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__setstate__" ><strong >__setstate__</strong></a>(self, stateDict)</dt><dd ><tt >pickle&nbsp;uses&nbsp;this</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-__str__" ><strong >__str__</strong></a>(self)</dt><dd ><tt >__str__&nbsp;-&nbsp;Returns&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;this&nbsp;object's&nbsp;state.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;implementation.<br />
+&nbsp;<br />
+@return&nbsp;&lt;str&gt;-&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Some&nbsp;samples:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;str(z)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'&lt;Song&nbsp;obj&nbsp;_id=24&nbsp;at&nbsp;0x7f3c6a3a4490&gt;'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;z.artist&nbsp;=&nbsp;'New&nbsp;Artist'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;str(z)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'&lt;Song&nbsp;obj&nbsp;_id=24&nbsp;(Unsaved&nbsp;Changes)&nbsp;at&nbsp;0x7f3c6a3a4490&gt;'</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-asDict" ><strong >asDict</strong></a>(self, includeMeta=False, forStorage=False, strKeys=False)</dt><dd ><tt >toDict&nbsp;/&nbsp;asDict&nbsp;-&nbsp;Get&nbsp;a&nbsp;dictionary&nbsp;representation&nbsp;of&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;includeMeta&nbsp;-&nbsp;Include&nbsp;metadata&nbsp;in&nbsp;return.&nbsp;For&nbsp;now,&nbsp;this&nbsp;is&nbsp;only&nbsp;pk&nbsp;stored&nbsp;as&nbsp;"_id"<br />
+&nbsp;<br />
+@param&nbsp;convertValueTypes&nbsp;&lt;bool&gt;&nbsp;-&nbsp;default&nbsp;True.&nbsp;If&nbsp;False,&nbsp;fields&nbsp;with&nbsp;fieldValue&nbsp;defined&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;that&nbsp;type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;True&nbsp;when&nbsp;saving,&nbsp;etc,&nbsp;as&nbsp;native&nbsp;type&nbsp;is&nbsp;always&nbsp;either&nbsp;str&nbsp;or&nbsp;bytes.<br />
+&nbsp;<br />
+@param&nbsp;strKeys&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;just&nbsp;the&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;field&nbsp;name&nbsp;will&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;key.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;the&nbsp;IRField&nbsp;itself&nbsp;will&nbsp;be&nbsp;(although&nbsp;represented&nbsp;and&nbsp;indexed&nbsp;by&nbsp;string)<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-connect" ><strong >connect</strong></a> = _deprecated_wrapper(*args, **kwargs)</dt></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-copy" ><strong >copy</strong></a>(self, copyPrimaryKey=False, copyValues=False)</dt><dd ><tt >copy&nbsp;-&nbsp;Copies&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;copyPrimaryKey&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;any&nbsp;changes&nbsp;to&nbsp;the&nbsp;copy&nbsp;will&nbsp;save&nbsp;over-top&nbsp;the&nbsp;existing&nbsp;entry&nbsp;in&nbsp;Redis.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False,&nbsp;only&nbsp;the&nbsp;data&nbsp;is&nbsp;copied,&nbsp;and&nbsp;nothing&nbsp;is&nbsp;saved.<br />
+&nbsp;<br />
+@param&nbsp;copyValues&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;every&nbsp;field&nbsp;value&nbsp;on&nbsp;this&nbsp;object&nbsp;will&nbsp;be&nbsp;explicitly&nbsp;copied.&nbsp;If&nbsp;False,<br />
+&nbsp;&nbsp;an&nbsp;object&nbsp;will&nbsp;be&nbsp;created&nbsp;with&nbsp;the&nbsp;same&nbsp;values,&nbsp;and&nbsp;depending&nbsp;on&nbsp;the&nbsp;type&nbsp;may&nbsp;share&nbsp;the&nbsp;same&nbsp;reference.<br />
+&nbsp;&nbsp;<br />
+&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;difference&nbsp;between&nbsp;a&nbsp;copy&nbsp;and&nbsp;a&nbsp;deepcopy.<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Copy&nbsp;of&nbsp;this&nbsp;object,&nbsp;per&nbsp;above<br />
+&nbsp;<br />
+If&nbsp;you&nbsp;need&nbsp;a&nbsp;copy&nbsp;that&nbsp;IS&nbsp;linked,&nbsp;@see&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.copy</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-delete" ><strong >delete</strong></a>(self)</dt><dd ><tt >delete&nbsp;-&nbsp;Delete&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-getPk" ><strong >getPk</strong></a>(self)</dt><dd ><tt >getPk&nbsp;-&nbsp;Gets&nbsp;the&nbsp;internal&nbsp;primary&nbsp;key&nbsp;associated&nbsp;with&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-getUpdatedFields" ><strong >getUpdatedFields</strong></a>(self)</dt><dd ><tt >getUpdatedFields&nbsp;-&nbsp;See&nbsp;changed&nbsp;fields.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;fieldName&nbsp;:&nbsp;tuple(old,&nbsp;new).<br />
+&nbsp;<br />
+fieldName&nbsp;may&nbsp;be&nbsp;a&nbsp;string&nbsp;or&nbsp;may&nbsp;implement&nbsp;IRField&nbsp;(which&nbsp;implements&nbsp;string,&nbsp;and&nbsp;can&nbsp;be&nbsp;used&nbsp;just&nbsp;like&nbsp;a&nbsp;string)</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-hasSameValues" ><strong >hasSameValues</strong></a>(self, other)</dt><dd ><tt >hasSameValues&nbsp;-&nbsp;Check&nbsp;if&nbsp;this&nbsp;and&nbsp;another&nbsp;model&nbsp;have&nbsp;the&nbsp;same&nbsp;fields&nbsp;and&nbsp;values.<br />
+&nbsp;<br />
+This&nbsp;does&nbsp;NOT&nbsp;include&nbsp;id,&nbsp;so&nbsp;the&nbsp;models&nbsp;can&nbsp;have&nbsp;the&nbsp;same&nbsp;values&nbsp;but&nbsp;be&nbsp;different&nbsp;objects&nbsp;in&nbsp;the&nbsp;database.<br />
+&nbsp;<br />
+@param&nbsp;other&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Another&nbsp;model<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;all&nbsp;fields&nbsp;have&nbsp;the&nbsp;same&nbsp;value,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-hasUnsavedChanges" ><strong >hasUnsavedChanges</strong></a>(self)</dt><dd ><tt >hasUnsavedChanges&nbsp;-&nbsp;Check&nbsp;if&nbsp;any&nbsp;unsaved&nbsp;changes&nbsp;are&nbsp;present&nbsp;in&nbsp;this&nbsp;model,&nbsp;or&nbsp;if&nbsp;it&nbsp;has&nbsp;never&nbsp;been&nbsp;saved.<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;any&nbsp;fields&nbsp;have&nbsp;changed&nbsp;since&nbsp;last&nbsp;fetch,&nbsp;or&nbsp;if&nbsp;never&nbsp;saved.&nbsp;Otherwise,&nbsp;False</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-pprint" ><strong >pprint</strong></a>(self, stream=None)</dt><dd ><tt >pprint&nbsp;-&nbsp;Pretty-print&nbsp;a&nbsp;dict&nbsp;representation&nbsp;of&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;stream&nbsp;&lt;file/None&gt;&nbsp;-&nbsp;Either&nbsp;a&nbsp;stream&nbsp;to&nbsp;output,&nbsp;or&nbsp;None&nbsp;to&nbsp;default&nbsp;to&nbsp;sys.stdout</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-reload" ><strong >reload</strong></a>(self)</dt><dd ><tt >reload&nbsp;-&nbsp;Reload&nbsp;this&nbsp;object&nbsp;from&nbsp;the&nbsp;database,&nbsp;overriding&nbsp;any&nbsp;local&nbsp;changes&nbsp;and&nbsp;merging&nbsp;in&nbsp;any&nbsp;updates.<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;@raises&nbsp;KeyError&nbsp;-&nbsp;if&nbsp;this&nbsp;object&nbsp;has&nbsp;not&nbsp;been&nbsp;saved&nbsp;(no&nbsp;primary&nbsp;key)<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;Dict&nbsp;with&nbsp;the&nbsp;keys&nbsp;that&nbsp;were&nbsp;updated.&nbsp;Key&nbsp;is&nbsp;field&nbsp;name&nbsp;that&nbsp;was&nbsp;updated,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;value&nbsp;is&nbsp;tuple&nbsp;of&nbsp;(old&nbsp;value,&nbsp;new&nbsp;value).</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-save" ><strong >save</strong></a>(self)</dt><dd ><tt >save&nbsp;-&nbsp;Save&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+Will&nbsp;perform&nbsp;an&nbsp;"insert"&nbsp;if&nbsp;this&nbsp;object&nbsp;had&nbsp;not&nbsp;been&nbsp;saved&nbsp;before,<br />
+&nbsp;&nbsp;otherwise&nbsp;will&nbsp;update&nbsp;JUST&nbsp;the&nbsp;fields&nbsp;changed&nbsp;on&nbsp;THIS&nbsp;INSTANCE&nbsp;of&nbsp;the&nbsp;model.<br />
+&nbsp;<br />
+&nbsp;&nbsp;i.e.&nbsp;If&nbsp;you&nbsp;have&nbsp;two&nbsp;processes&nbsp;fetch&nbsp;the&nbsp;same&nbsp;object&nbsp;and&nbsp;change&nbsp;different&nbsp;fields,&nbsp;they&nbsp;will&nbsp;not&nbsp;overwrite<br />
+&nbsp;&nbsp;eachother,&nbsp;but&nbsp;only&nbsp;save&nbsp;the&nbsp;ones&nbsp;each&nbsp;process&nbsp;changed.<br />
+&nbsp;<br />
+If&nbsp;you&nbsp;want&nbsp;to&nbsp;save&nbsp;multiple&nbsp;objects&nbsp;of&nbsp;type&nbsp;MyModel&nbsp;in&nbsp;a&nbsp;single&nbsp;transaction,<br />
+and&nbsp;you&nbsp;have&nbsp;those&nbsp;objects&nbsp;in&nbsp;a&nbsp;list,&nbsp;myObjs,&nbsp;you&nbsp;can&nbsp;do&nbsp;the&nbsp;following:<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyModel.saver.<a href="#NetFetchCompressedBzip2File-save" >save</a>(myObjs)<br />
+&nbsp;<br />
+@see&nbsp;#IndexedRedisSave.save<br />
+&nbsp;<br />
+@return&nbsp;&lt;list&gt;&nbsp;-&nbsp;Single&nbsp;element&nbsp;list,&nbsp;id&nbsp;of&nbsp;saved&nbsp;object&nbsp;(if&nbsp;successful)</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-saveToExternal" ><strong >saveToExternal</strong></a>(self, redisCon)</dt><dd ><tt >saveToExternal&nbsp;-&nbsp;Saves&nbsp;this&nbsp;object&nbsp;to&nbsp;a&nbsp;different&nbsp;Redis&nbsp;than&nbsp;that&nbsp;specified&nbsp;by&nbsp;REDIS_CONNECTION_PARAMS&nbsp;on&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;redisCon&nbsp;&lt;dict/redis.Redis&gt;&nbsp;-&nbsp;Either&nbsp;a&nbsp;dict&nbsp;of&nbsp;connection&nbsp;params,&nbsp;a&nbsp;la&nbsp;REDIS_CONNECTION_PARAMS,&nbsp;or&nbsp;an&nbsp;existing&nbsp;Redis&nbsp;connection.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;are&nbsp;doing&nbsp;a&nbsp;lot&nbsp;of&nbsp;bulk&nbsp;copies,&nbsp;it&nbsp;is&nbsp;recommended&nbsp;that&nbsp;you&nbsp;create&nbsp;a&nbsp;Redis&nbsp;connection&nbsp;and&nbsp;pass&nbsp;it&nbsp;in&nbsp;rather&nbsp;than&nbsp;establish&nbsp;a&nbsp;new<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection&nbsp;with&nbsp;each&nbsp;call.<br />
+&nbsp;<br />
+@note&nbsp;-&nbsp;You&nbsp;will&nbsp;generate&nbsp;a&nbsp;new&nbsp;primary&nbsp;key&nbsp;relative&nbsp;to&nbsp;the&nbsp;external&nbsp;Redis&nbsp;environment.&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;reference&nbsp;a&nbsp;"shared"&nbsp;primary&nbsp;key,&nbsp;it&nbsp;is&nbsp;better<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;use&nbsp;an&nbsp;indexed&nbsp;field&nbsp;than&nbsp;the&nbsp;internal&nbsp;pk.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-toDict" ><strong >toDict</strong></a> = asDict(self, includeMeta=False, forStorage=False, strKeys=False)</dt><dd ><tt >toDict&nbsp;/&nbsp;asDict&nbsp;-&nbsp;Get&nbsp;a&nbsp;dictionary&nbsp;representation&nbsp;of&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;includeMeta&nbsp;-&nbsp;Include&nbsp;metadata&nbsp;in&nbsp;return.&nbsp;For&nbsp;now,&nbsp;this&nbsp;is&nbsp;only&nbsp;pk&nbsp;stored&nbsp;as&nbsp;"_id"<br />
+&nbsp;<br />
+@param&nbsp;convertValueTypes&nbsp;&lt;bool&gt;&nbsp;-&nbsp;default&nbsp;True.&nbsp;If&nbsp;False,&nbsp;fields&nbsp;with&nbsp;fieldValue&nbsp;defined&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;that&nbsp;type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;True&nbsp;when&nbsp;saving,&nbsp;etc,&nbsp;as&nbsp;native&nbsp;type&nbsp;is&nbsp;always&nbsp;either&nbsp;str&nbsp;or&nbsp;bytes.<br />
+&nbsp;<br />
+@param&nbsp;strKeys&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;just&nbsp;the&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;field&nbsp;name&nbsp;will&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;key.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;the&nbsp;IRField&nbsp;itself&nbsp;will&nbsp;be&nbsp;(although&nbsp;represented&nbsp;and&nbsp;indexed&nbsp;by&nbsp;string)<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
+
+<hr />
+Class methods inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedBzip2File-connectAlt" ><strong >connectAlt</strong></a>(redisConnectionParams)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >connectAlt&nbsp;-&nbsp;Create&nbsp;a&nbsp;class&nbsp;of&nbsp;this&nbsp;model&nbsp;which&nbsp;will&nbsp;use&nbsp;an&nbsp;alternate&nbsp;connection&nbsp;than&nbsp;the&nbsp;one&nbsp;specified&nbsp;by&nbsp;REDIS_CONNECTION_PARAMS&nbsp;on&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;redisConnectionParams&nbsp;&lt;dict&gt;&nbsp;-&nbsp;Dictionary&nbsp;of&nbsp;arguments&nbsp;to&nbsp;redis.Redis,&nbsp;same&nbsp;as&nbsp;REDIS_CONNECTION_PARAMS.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;A&nbsp;class&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;all&nbsp;the&nbsp;same&nbsp;ways&nbsp;as&nbsp;the&nbsp;existing&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>,&nbsp;but&nbsp;that&nbsp;connects&nbsp;to&nbsp;a&nbsp;different&nbsp;instance.<br />
+&nbsp;<br />
+&nbsp;&nbsp;The&nbsp;fields&nbsp;and&nbsp;key&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;here,&nbsp;but&nbsp;the&nbsp;connection&nbsp;will&nbsp;be&nbsp;different.&nbsp;use&nbsp;#copyModel&nbsp;if&nbsp;you&nbsp;want&nbsp;an&nbsp;independent&nbsp;class&nbsp;for&nbsp;the&nbsp;model</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-copyModel" ><strong >copyModel</strong></a>()<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >copyModel&nbsp;-&nbsp;Copy&nbsp;this&nbsp;model,&nbsp;and&nbsp;return&nbsp;that&nbsp;copy.<br />
+&nbsp;<br />
+&nbsp;&nbsp;The&nbsp;copied&nbsp;model&nbsp;will&nbsp;have&nbsp;all&nbsp;the&nbsp;same&nbsp;data,&nbsp;but&nbsp;will&nbsp;have&nbsp;a&nbsp;fresh&nbsp;instance&nbsp;of&nbsp;the&nbsp;FIELDS&nbsp;array&nbsp;and&nbsp;all&nbsp;members,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;INDEXED_FIELDS&nbsp;array.<br />
+&nbsp;&nbsp;<br />
+&nbsp;&nbsp;This&nbsp;is&nbsp;useful&nbsp;for&nbsp;converting,&nbsp;like&nbsp;changing&nbsp;field&nbsp;types&nbsp;or&nbsp;whatever,&nbsp;where&nbsp;you&nbsp;can&nbsp;load&nbsp;from&nbsp;one&nbsp;model&nbsp;and&nbsp;save&nbsp;into&nbsp;the&nbsp;other.<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;A&nbsp;copy&nbsp;class&nbsp;of&nbsp;this&nbsp;model&nbsp;class&nbsp;with&nbsp;a&nbsp;unique&nbsp;name.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-reset" ><strong >reset</strong></a>(newObjs)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >reset&nbsp;-&nbsp;Remove&nbsp;all&nbsp;stored&nbsp;data&nbsp;associated&nbsp;with&nbsp;this&nbsp;model&nbsp;(i.e.&nbsp;all&nbsp;objects&nbsp;of&nbsp;this&nbsp;type),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;then&nbsp;save&nbsp;all&nbsp;the&nbsp;provided&nbsp;objects&nbsp;in&nbsp;#newObjs&nbsp;,&nbsp;all&nbsp;in&nbsp;one&nbsp;atomic&nbsp;transaction.<br />
+&nbsp;<br />
+Use&nbsp;this&nbsp;method&nbsp;to&nbsp;move&nbsp;from&nbsp;one&nbsp;complete&nbsp;set&nbsp;of&nbsp;objects&nbsp;to&nbsp;another,&nbsp;where&nbsp;any&nbsp;querying&nbsp;applications<br />
+will&nbsp;only&nbsp;see&nbsp;the&nbsp;complete&nbsp;before&nbsp;or&nbsp;complete&nbsp;after.<br />
+&nbsp;<br />
+@param&nbsp;newObjs&nbsp;list&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&nbsp;objs&gt;&nbsp;-&nbsp;A&nbsp;list&nbsp;of&nbsp;objects&nbsp;that&nbsp;will&nbsp;replace&nbsp;the&nbsp;current&nbsp;dataset<br />
+&nbsp;<br />
+To&nbsp;just&nbsp;replace&nbsp;a&nbsp;specific&nbsp;subset&nbsp;of&nbsp;objects&nbsp;in&nbsp;a&nbsp;single&nbsp;transaction,&nbsp;you&nbsp;can&nbsp;do&nbsp;MyModel.saver.<a href="#NetFetchCompressedBzip2File-save" >save</a>(objs)<br />
+&nbsp;&nbsp;and&nbsp;just&nbsp;the&nbsp;objs&nbsp;in&nbsp;"objs"&nbsp;will&nbsp;be&nbsp;inserted/updated&nbsp;in&nbsp;one&nbsp;atomic&nbsp;step.<br />
+&nbsp;<br />
+This&nbsp;method,&nbsp;on&nbsp;the&nbsp;other&nbsp;hand,&nbsp;will&nbsp;delete&nbsp;all&nbsp;previous&nbsp;objects&nbsp;and&nbsp;add&nbsp;the&nbsp;newly&nbsp;provided&nbsp;objects&nbsp;in&nbsp;a&nbsp;single&nbsp;atomic&nbsp;step,<br />
+&nbsp;&nbsp;and&nbsp;also&nbsp;reset&nbsp;the&nbsp;primary&nbsp;key&nbsp;ID&nbsp;generator<br />
+&nbsp;<br />
+@return&nbsp;list&lt;int&gt;&nbsp;-&nbsp;The&nbsp;new&nbsp;primary&nbsp;keys&nbsp;associated&nbsp;with&nbsp;each&nbsp;object&nbsp;(same&nbsp;order&nbsp;as&nbsp;provided&nbsp;#newObjs&nbsp;list)</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedBzip2File-validateModel" ><strong >validateModel</strong></a>()<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >validateModel&nbsp;-&nbsp;Class&nbsp;method&nbsp;that&nbsp;validates&nbsp;a&nbsp;given&nbsp;model&nbsp;is&nbsp;implemented&nbsp;correctly.&nbsp;Will&nbsp;only&nbsp;be&nbsp;validated&nbsp;once,&nbsp;on&nbsp;first&nbsp;model&nbsp;instantiation.<br />
+&nbsp;<br />
+@param&nbsp;model&nbsp;-&nbsp;Implicit&nbsp;of&nbsp;own&nbsp;class<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;True<br />
+&nbsp;<br />
+@raises&nbsp;-&nbsp;InvalidModelException&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;problem&nbsp;with&nbsp;the&nbsp;model,&nbsp;and&nbsp;the&nbsp;message&nbsp;contains&nbsp;relevant&nbsp;information.</tt></dd></dl>
+
+<hr />
+Data descriptors inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><strong >__dict__</strong></dt>
+<dd ><tt >dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl ><dt ><strong >__weakref__</strong></dt>
+<dd ><tt >list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr />
+Data and other attributes inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><strong >REDIS_CONNECTION_PARAMS</strong> = {}</dt></dl>
+
+<dl ><dt ><strong >__hash__</strong> = None</dt></dl>
+
+<dl ><dt ><strong >deleter</strong> = &lt;IndexedRedis.IndexedRedisDelete object&gt;</dt></dl>
+
+<dl ><dt ><strong >objects</strong> = &lt;IndexedRedis.IndexedRedisQuery object&gt;</dt></dl>
+
+<dl ><dt ><strong >saver</strong> = &lt;IndexedRedis.IndexedRedisSave object&gt;</dt></dl>
+
+</td></tr></table> <p >
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
+<tr bgcolor="#ffc8d8" >
+<td colspan="3" valign="bottom" >&nbsp;<br />
+<font color="#000000" face="helvetica, arial" ><a name="NetFetchCompressedGzipFile" >class <strong >NetFetchCompressedGzipFile</strong></a>(<a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8" ><td rowspan="2" ><tt >&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2" ><tt ><a href="#NetFetchCompressedGzipFile" >NetFetchCompressedGzipFile</a>&nbsp;-&nbsp;Used&nbsp;for&nbsp;gzip&nbsp;compression&nbsp;on&nbsp;a&nbsp;<a href="#NetFetchFile" >NetFetchFile</a><br />&nbsp;</tt></td></tr>
+<tr ><td >&nbsp;</td>
+<td width="100%" ><dl ><dt >Method resolution order:</dt>
+<dd ><a href="NetFetch.html#NetFetchCompressedGzipFile" >NetFetchCompressedGzipFile</a></dd>
+<dd ><a href="NetFetch.html#NetFetchFile" >NetFetchFile</a></dd>
+<dd ><a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a></dd>
+<dd ><a href="builtins.html#object" >builtins.object</a></dd>
+</dl>
+<hr />
+Data and other attributes defined here:<br />
+<dl ><dt ><strong >FIELDS</strong> = [IRField( "filename", valueType=str, hashIndex=F...zlib" ) ], hashIndex=True, defaultValue=irNull )]</dt></dl>
+
+<dl ><dt ><strong >NETFETCH_TYPE</strong> = 2</dt></dl>
+
+<hr />
+Methods inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedGzipFile-encryptData" ><strong >encryptData</strong></a>(self, password)</dt><dd ><tt >encryptData&nbsp;-&nbsp;Encrypts&nbsp;data&nbsp;on&nbsp;this&nbsp;object&nbsp;and&nbsp;sets&nbsp;'encrypted'&nbsp;flag.&nbsp;&nbsp;Does&nbsp;not&nbsp;save&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;password&nbsp;&lt;str&gt;&nbsp;4-32&nbsp;characters&nbsp;of&nbsp;password,&nbsp;used&nbsp;to&nbsp;encrypt.<br />
+&nbsp;<br />
+@raises&nbsp;-&nbsp;ValueError&nbsp;if&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;requirements</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-getData" ><strong >getData</strong></a>(self, password=None)</dt><dd ><tt >getData&nbsp;-&nbsp;Fetch&nbsp;the&nbsp;data&nbsp;associated&nbsp;with&nbsp;this&nbsp;file,&nbsp;and&nbsp;potentially&nbsp;decrypt.<br />
+&nbsp;<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;None&nbsp;if&nbsp;unencrypted,&nbsp;otherwise&nbsp;a&nbsp;password&nbsp;4-32&nbsp;chars.<br />
+&nbsp;<br />
+@return&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;file&nbsp;data<br />
+&nbsp;<br />
+@raises&nbsp;<a href="#InvalidPasswordException" >InvalidPasswordException</a>&nbsp;-&nbsp;The&nbsp;file&nbsp;was&nbsp;encrypted&nbsp;and&nbsp;a&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;or&nbsp;the&nbsp;file&nbsp;was&nbsp;not&nbsp;encrypted&nbsp;and&nbsp;a&nbsp;password&nbsp;was&nbsp;provided,&nbsp;or&nbsp;the&nbsp;file&nbsp;was&nbsp;encrypted&nbsp;and&nbsp;no&nbsp;password&nbsp;was&nbsp;provided.<br />
+@raises&nbsp;ValueError&nbsp;-&nbsp;If&nbsp;password&nbsp;is&nbsp;not&nbsp;4-32&nbsp;characters.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-setData" ><strong >setData</strong></a>(self, data)</dt><dd ><tt >setData&nbsp;-&nbsp;Store&nbsp;data&nbsp;on&nbsp;this&nbsp;object&nbsp;and&nbsp;calculates&nbsp;checksum.&nbsp;If&nbsp;a&nbsp;password&nbsp;is&nbsp;required,&nbsp;must&nbsp;also&nbsp;call&nbsp;encryptData.&nbsp;Does&nbsp;not&nbsp;save&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;store</tt></dd></dl>
+
+<hr />
+Class methods inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedGzipFile-create" ><strong >create</strong></a>(filename, data, mode='', owner='', group='', password=None, hostnameOverride=None)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >create&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br />
+@param&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;str<br />
+@param&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;String&nbsp;or&nbsp;int&nbsp;of&nbsp;base-8&nbsp;encoded&nbsp;chmod&nbsp;value.&nbsp;os.stat(x).st_mode&nbsp;returns&nbsp;this.<br />
+@param&nbsp;owner&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Username&nbsp;owner<br />
+@param&nbsp;group&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Associated&nbsp;group<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br />
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@raises&nbsp;KeyError&nbsp;if&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;already&nbsp;exists.&nbsp;use&nbsp;createOrUpdate&nbsp;to&nbsp;conditionally&nbsp;update&nbsp;it.<br />
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-createOrUpdate" ><strong >createOrUpdate</strong></a>(filename, data, mode='', owner='', group='', password=None, hostnameOverride=None)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >createOrUpdate&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object,&nbsp;or&nbsp;update&nbsp;an&nbsp;existing&nbsp;one.<br />
+&nbsp;<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br />
+@param&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;str<br />
+@param&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;String&nbsp;or&nbsp;int&nbsp;of&nbsp;base-8&nbsp;encoded&nbsp;chmod&nbsp;value.&nbsp;os.stat(x).st_mode&nbsp;returns&nbsp;this.<br />
+@param&nbsp;owner&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Username&nbsp;owner<br />
+@param&nbsp;group&nbsp;&nbsp;&nbsp;&nbsp;&lt;str&gt;&nbsp;&nbsp;-&nbsp;Associated&nbsp;group<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br />
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-createOrUpdateFromFile" ><strong >createOrUpdateFromFile</strong></a>(filename, password=None, hostnameOverride=None, savePermissions=True)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >createOrUpdateFromFile&nbsp;-&nbsp;Create&nbsp;and&nbsp;save&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object,&nbsp;or&nbsp;update&nbsp;an&nbsp;existing&nbsp;one,&nbsp;provided&nbsp;with&nbsp;a&nbsp;filename.<br />
+&nbsp;<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;filename&nbsp;to&nbsp;use&nbsp;for&nbsp;storage<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;&nbsp;-&nbsp;If&nbsp;provided,&nbsp;4-32&nbsp;characters&nbsp;to&nbsp;encrypt.&nbsp;If&nbsp;not&nbsp;provided,&nbsp;file&nbsp;will&nbsp;not&nbsp;be&nbsp;encrypted.<br />
+@param&nbsp;hostnameOverride&nbsp;&lt;None/Str&gt;&nbsp;-&nbsp;Override&nbsp;hostname&nbsp;with&nbsp;this&nbsp;value.&nbsp;Default&nbsp;is&nbsp;to&nbsp;use&nbsp;current&nbsp;hostname.<br />
+@param&nbsp;savePermissions&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;will&nbsp;store&nbsp;owner/group/mode&nbsp;of&nbsp;file.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Saved&nbsp;<a href="#NetFetchFile" >NetFetchFile</a>&nbsp;object<br />
+&nbsp;<br />
+@raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-deleteFile" ><strong >deleteFile</strong></a>(hostname, filename)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >deleteFile&nbsp;-&nbsp;Deletes&nbsp;a&nbsp;file&nbsp;from&nbsp;NetFetch&nbsp;storage.<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;delete<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;a&nbsp;file&nbsp;was&nbsp;deleted,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-downloadToLocal" ><strong >downloadToLocal</strong></a>(hostname, filename, password=None, localFilename=None, retainPermissions=True)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >downloadToLocal&nbsp;-&nbsp;Download&nbsp;file&nbsp;to&nbsp;a&nbsp;local&nbsp;filename<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;fetch<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;Try&nbsp;this&nbsp;password&nbsp;on&nbsp;potentially&nbsp;encrpyted&nbsp;file.<br />
+@param&nbsp;localFilename&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;If&nbsp;defined,&nbsp;saves&nbsp;at&nbsp;this&nbsp;location.&nbsp;Otherwise,&nbsp;saves&nbsp;at&nbsp;#filename<br />
+@param&nbsp;retainPermissions&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;tries&nbsp;to&nbsp;retain&nbsp;owner/group/mode.&nbsp;If&nbsp;owner/group,&nbsp;you&nbsp;must&nbsp;be&nbsp;root.&nbsp;Silently&nbsp;fails&nbsp;if&nbsp;can't&nbsp;apply.<br />
+&nbsp;<br />
+@raises&nbsp;<a href="#NoSuchNetFetchFile" >NoSuchNetFetchFile</a>&nbsp;-&nbsp;If&nbsp;no&nbsp;hostname/filename&nbsp;match&nbsp;exists<br />
+@raises&nbsp;<a href="#InvalidPasswordException" >InvalidPasswordException</a>&nbsp;-&nbsp;If&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;see&nbsp;getData&nbsp;for&nbsp;all&nbsp;conditions.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-downloadToStr" ><strong >downloadToStr</strong></a>(hostname, filename, password=None)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >downloadToStr&nbsp;-&nbsp;Download&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;and&nbsp;return&nbsp;as&nbsp;a&nbsp;string<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;fetch<br />
+@param&nbsp;password&nbsp;&lt;str/None&gt;&nbsp;-&nbsp;Try&nbsp;this&nbsp;password&nbsp;on&nbsp;potentially&nbsp;encrpyted&nbsp;file.<br />
+&nbsp;<br />
+@return&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;that&nbsp;has&nbsp;been&nbsp;downloaded<br />
+&nbsp;<br />
+@raises&nbsp;<a href="#NoSuchNetFetchFile" >NoSuchNetFetchFile</a>&nbsp;-&nbsp;If&nbsp;no&nbsp;hostname/filename&nbsp;match&nbsp;exists<br />
+@raises&nbsp;<a href="#InvalidPasswordException" >InvalidPasswordException</a>&nbsp;-&nbsp;If&nbsp;password&nbsp;was&nbsp;invalid,&nbsp;see&nbsp;getData&nbsp;for&nbsp;all&nbsp;conditions.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-exists" ><strong >exists</strong></a>(hostname, filename)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >exists&nbsp;-&nbsp;Check&nbsp;if&nbsp;a&nbsp;hostname/filename&nbsp;pair&nbsp;exists<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;field<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;field<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;If&nbsp;a&nbsp;file&nbsp;is&nbsp;stored&nbsp;under&nbsp;the&nbsp;hostname/filename&nbsp;key&nbsp;pair</tt></dd></dl>
+
+<hr />
+Static methods inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedGzipFile-calculateChecksum" ><strong >calculateChecksum</strong></a>(data)</dt><dd ><tt >calculateChecksum&nbsp;-&nbsp;Calculates&nbsp;a&nbsp;checksum&nbsp;from&nbsp;given&nbsp;data<br />
+&nbsp;<br />
+@param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;check</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-getNetFetchClassForKey" ><strong >getNetFetchClassForKey</strong></a>(primaryKey)</dt></dl>
+
+<hr />
+Data and other attributes inherited from <a href="NetFetch.html#NetFetchFile" >NetFetchFile</a>:<br />
+<dl ><dt ><strong >INDEXED_FIELDS</strong> = ['filename', 'hostname']</dt></dl>
+
+<dl ><dt ><strong >KEY_NAME</strong> = 'NetFetchFile'</dt></dl>
+
+<hr />
+Methods inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__copy__" ><strong >__copy__</strong></a>(self)</dt><dd ><tt >&nbsp;__copy__&nbsp;-&nbsp;Used&nbsp;by&nbsp;the&nbsp;"copy"&nbsp;module&nbsp;to&nbsp;make&nbsp;a&nbsp;copy,<br />
+&nbsp;&nbsp;&nbsp;which&nbsp;will&nbsp;NOT&nbsp;be&nbsp;linked&nbsp;to&nbsp;the&nbsp;original&nbsp;entry&nbsp;in&nbsp;the&nbsp;database,&nbsp;but&nbsp;will&nbsp;contain&nbsp;the&nbsp;same&nbsp;data<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Copy&nbsp;of&nbsp;this&nbsp;object,&nbsp;per&nbsp;above</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__deepcopy__" ><strong >__deepcopy__</strong></a>(self, *args, **kwargs)</dt><dd ><tt >&nbsp;__deepcopy__&nbsp;-&nbsp;Used&nbsp;by&nbsp;the&nbsp;"copy"&nbsp;module&nbsp;to&nbsp;make&nbsp;a&nbsp;deepcopy.<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;Will&nbsp;perform&nbsp;a&nbsp;deepcopy&nbsp;of&nbsp;all&nbsp;attributes,&nbsp;which&nbsp;will&nbsp;NOT&nbsp;be&nbsp;linked&nbsp;to&nbsp;the&nbsp;original&nbsp;entry&nbsp;in&nbsp;the&nbsp;database.<br />
+&nbsp;<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;need&nbsp;a&nbsp;copy&nbsp;that&nbsp;IS&nbsp;linked,&nbsp;@see&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.copy<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Deep&nbsp;copy&nbsp;of&nbsp;this&nbsp;object,&nbsp;per&nbsp;above</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__eq__" ><strong >__eq__</strong></a>(self, other)</dt><dd ><tt >__eq__&nbsp;-&nbsp;Check&nbsp;if&nbsp;two&nbsp;IndexedRedisModels&nbsp;are&nbsp;equal.<br />
+&nbsp;<br />
+They&nbsp;are&nbsp;equal&nbsp;if&nbsp;they&nbsp;have&nbsp;the&nbsp;same&nbsp;type&nbsp;and&nbsp;same&nbsp;field&nbsp;values&nbsp;(including&nbsp;id).<br />
+&nbsp;<br />
+To&nbsp;check&nbsp;if&nbsp;two&nbsp;models&nbsp;have&nbsp;the&nbsp;same&nbsp;values&nbsp;(but&nbsp;can&nbsp;have&nbsp;different&nbsp;ids),&nbsp;use&nbsp;#hasSameValues&nbsp;method.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__getstate__" ><strong >__getstate__</strong></a>(self)</dt><dd ><tt >pickle&nbsp;uses&nbsp;this</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__init__" ><strong >__init__</strong></a>(self, *args, **kwargs)</dt><dd ><tt >__init__&nbsp;-&nbsp;Set&nbsp;the&nbsp;values&nbsp;on&nbsp;this&nbsp;object.&nbsp;MAKE&nbsp;SURE&nbsp;YOU&nbsp;CALL&nbsp;THE&nbsp;SUPER&nbsp;HERE,&nbsp;or&nbsp;else&nbsp;things&nbsp;will&nbsp;not&nbsp;work.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__ne__" ><strong >__ne__</strong></a>(self, other)</dt><dd ><tt >__ne__&nbsp;-&nbsp;Check&nbsp;if&nbsp;two&nbsp;IndexedRedisModels&nbsp;are&nbsp;NOT&nbsp;equal.<br />
+&nbsp;<br />
+@see&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.__eq__</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__repr__" ><strong >__repr__</strong></a>(self)</dt><dd ><tt >__repr__&nbsp;-&nbsp;Returns&nbsp;a&nbsp;string&nbsp;of&nbsp;the&nbsp;constructor/params&nbsp;to&nbsp;recreate&nbsp;this&nbsp;object.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Example:&nbsp;objCopy&nbsp;=&nbsp;eval(repr(obj))<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;String&nbsp;of&nbsp;python&nbsp;init&nbsp;call&nbsp;to&nbsp;recreate&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__setattr__" ><strong >__setattr__</strong></a>(self, keyName, value)</dt><dd ><tt >__setattr__&nbsp;-&nbsp;Will&nbsp;be&nbsp;used&nbsp;to&nbsp;set&nbsp;an&nbsp;attribute&nbsp;on&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+&nbsp;&nbsp;If&nbsp;the&nbsp;attribute&nbsp;is&nbsp;a&nbsp;field&nbsp;(in&nbsp;self.<strong >FIELDS</strong>),&nbsp;it&nbsp;will&nbsp;be&nbsp;converted&nbsp;via&nbsp;the&nbsp;field&nbsp;type's&nbsp;#fromInput&nbsp;method.<br />
+&nbsp;<br />
+&nbsp;&nbsp;Otherwise,&nbsp;it&nbsp;will&nbsp;just&nbsp;set&nbsp;the&nbsp;attribute&nbsp;on&nbsp;this&nbsp;object.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__setstate__" ><strong >__setstate__</strong></a>(self, stateDict)</dt><dd ><tt >pickle&nbsp;uses&nbsp;this</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-__str__" ><strong >__str__</strong></a>(self)</dt><dd ><tt >__str__&nbsp;-&nbsp;Returns&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;this&nbsp;object's&nbsp;state.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;implementation.<br />
+&nbsp;<br />
+@return&nbsp;&lt;str&gt;-&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Some&nbsp;samples:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;str(z)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'&lt;Song&nbsp;obj&nbsp;_id=24&nbsp;at&nbsp;0x7f3c6a3a4490&gt;'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;z.artist&nbsp;=&nbsp;'New&nbsp;Artist'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(Pdb)&nbsp;str(z)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;'&lt;Song&nbsp;obj&nbsp;_id=24&nbsp;(Unsaved&nbsp;Changes)&nbsp;at&nbsp;0x7f3c6a3a4490&gt;'</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-asDict" ><strong >asDict</strong></a>(self, includeMeta=False, forStorage=False, strKeys=False)</dt><dd ><tt >toDict&nbsp;/&nbsp;asDict&nbsp;-&nbsp;Get&nbsp;a&nbsp;dictionary&nbsp;representation&nbsp;of&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;includeMeta&nbsp;-&nbsp;Include&nbsp;metadata&nbsp;in&nbsp;return.&nbsp;For&nbsp;now,&nbsp;this&nbsp;is&nbsp;only&nbsp;pk&nbsp;stored&nbsp;as&nbsp;"_id"<br />
+&nbsp;<br />
+@param&nbsp;convertValueTypes&nbsp;&lt;bool&gt;&nbsp;-&nbsp;default&nbsp;True.&nbsp;If&nbsp;False,&nbsp;fields&nbsp;with&nbsp;fieldValue&nbsp;defined&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;that&nbsp;type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;True&nbsp;when&nbsp;saving,&nbsp;etc,&nbsp;as&nbsp;native&nbsp;type&nbsp;is&nbsp;always&nbsp;either&nbsp;str&nbsp;or&nbsp;bytes.<br />
+&nbsp;<br />
+@param&nbsp;strKeys&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;just&nbsp;the&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;field&nbsp;name&nbsp;will&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;key.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;the&nbsp;IRField&nbsp;itself&nbsp;will&nbsp;be&nbsp;(although&nbsp;represented&nbsp;and&nbsp;indexed&nbsp;by&nbsp;string)<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-connect" ><strong >connect</strong></a> = _deprecated_wrapper(*args, **kwargs)</dt></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-copy" ><strong >copy</strong></a>(self, copyPrimaryKey=False, copyValues=False)</dt><dd ><tt >copy&nbsp;-&nbsp;Copies&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;copyPrimaryKey&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;any&nbsp;changes&nbsp;to&nbsp;the&nbsp;copy&nbsp;will&nbsp;save&nbsp;over-top&nbsp;the&nbsp;existing&nbsp;entry&nbsp;in&nbsp;Redis.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;False,&nbsp;only&nbsp;the&nbsp;data&nbsp;is&nbsp;copied,&nbsp;and&nbsp;nothing&nbsp;is&nbsp;saved.<br />
+&nbsp;<br />
+@param&nbsp;copyValues&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;every&nbsp;field&nbsp;value&nbsp;on&nbsp;this&nbsp;object&nbsp;will&nbsp;be&nbsp;explicitly&nbsp;copied.&nbsp;If&nbsp;False,<br />
+&nbsp;&nbsp;an&nbsp;object&nbsp;will&nbsp;be&nbsp;created&nbsp;with&nbsp;the&nbsp;same&nbsp;values,&nbsp;and&nbsp;depending&nbsp;on&nbsp;the&nbsp;type&nbsp;may&nbsp;share&nbsp;the&nbsp;same&nbsp;reference.<br />
+&nbsp;&nbsp;<br />
+&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;difference&nbsp;between&nbsp;a&nbsp;copy&nbsp;and&nbsp;a&nbsp;deepcopy.<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Copy&nbsp;of&nbsp;this&nbsp;object,&nbsp;per&nbsp;above<br />
+&nbsp;<br />
+If&nbsp;you&nbsp;need&nbsp;a&nbsp;copy&nbsp;that&nbsp;IS&nbsp;linked,&nbsp;@see&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.copy</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-delete" ><strong >delete</strong></a>(self)</dt><dd ><tt >delete&nbsp;-&nbsp;Delete&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-getPk" ><strong >getPk</strong></a>(self)</dt><dd ><tt >getPk&nbsp;-&nbsp;Gets&nbsp;the&nbsp;internal&nbsp;primary&nbsp;key&nbsp;associated&nbsp;with&nbsp;this&nbsp;object</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-getUpdatedFields" ><strong >getUpdatedFields</strong></a>(self)</dt><dd ><tt >getUpdatedFields&nbsp;-&nbsp;See&nbsp;changed&nbsp;fields.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;fieldName&nbsp;:&nbsp;tuple(old,&nbsp;new).<br />
+&nbsp;<br />
+fieldName&nbsp;may&nbsp;be&nbsp;a&nbsp;string&nbsp;or&nbsp;may&nbsp;implement&nbsp;IRField&nbsp;(which&nbsp;implements&nbsp;string,&nbsp;and&nbsp;can&nbsp;be&nbsp;used&nbsp;just&nbsp;like&nbsp;a&nbsp;string)</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-hasSameValues" ><strong >hasSameValues</strong></a>(self, other)</dt><dd ><tt >hasSameValues&nbsp;-&nbsp;Check&nbsp;if&nbsp;this&nbsp;and&nbsp;another&nbsp;model&nbsp;have&nbsp;the&nbsp;same&nbsp;fields&nbsp;and&nbsp;values.<br />
+&nbsp;<br />
+This&nbsp;does&nbsp;NOT&nbsp;include&nbsp;id,&nbsp;so&nbsp;the&nbsp;models&nbsp;can&nbsp;have&nbsp;the&nbsp;same&nbsp;values&nbsp;but&nbsp;be&nbsp;different&nbsp;objects&nbsp;in&nbsp;the&nbsp;database.<br />
+&nbsp;<br />
+@param&nbsp;other&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Another&nbsp;model<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;all&nbsp;fields&nbsp;have&nbsp;the&nbsp;same&nbsp;value,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-hasUnsavedChanges" ><strong >hasUnsavedChanges</strong></a>(self)</dt><dd ><tt >hasUnsavedChanges&nbsp;-&nbsp;Check&nbsp;if&nbsp;any&nbsp;unsaved&nbsp;changes&nbsp;are&nbsp;present&nbsp;in&nbsp;this&nbsp;model,&nbsp;or&nbsp;if&nbsp;it&nbsp;has&nbsp;never&nbsp;been&nbsp;saved.<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;any&nbsp;fields&nbsp;have&nbsp;changed&nbsp;since&nbsp;last&nbsp;fetch,&nbsp;or&nbsp;if&nbsp;never&nbsp;saved.&nbsp;Otherwise,&nbsp;False</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-pprint" ><strong >pprint</strong></a>(self, stream=None)</dt><dd ><tt >pprint&nbsp;-&nbsp;Pretty-print&nbsp;a&nbsp;dict&nbsp;representation&nbsp;of&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+@param&nbsp;stream&nbsp;&lt;file/None&gt;&nbsp;-&nbsp;Either&nbsp;a&nbsp;stream&nbsp;to&nbsp;output,&nbsp;or&nbsp;None&nbsp;to&nbsp;default&nbsp;to&nbsp;sys.stdout</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-reload" ><strong >reload</strong></a>(self)</dt><dd ><tt >reload&nbsp;-&nbsp;Reload&nbsp;this&nbsp;object&nbsp;from&nbsp;the&nbsp;database,&nbsp;overriding&nbsp;any&nbsp;local&nbsp;changes&nbsp;and&nbsp;merging&nbsp;in&nbsp;any&nbsp;updates.<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;@raises&nbsp;KeyError&nbsp;-&nbsp;if&nbsp;this&nbsp;object&nbsp;has&nbsp;not&nbsp;been&nbsp;saved&nbsp;(no&nbsp;primary&nbsp;key)<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;Dict&nbsp;with&nbsp;the&nbsp;keys&nbsp;that&nbsp;were&nbsp;updated.&nbsp;Key&nbsp;is&nbsp;field&nbsp;name&nbsp;that&nbsp;was&nbsp;updated,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;value&nbsp;is&nbsp;tuple&nbsp;of&nbsp;(old&nbsp;value,&nbsp;new&nbsp;value).</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-save" ><strong >save</strong></a>(self)</dt><dd ><tt >save&nbsp;-&nbsp;Save&nbsp;this&nbsp;object.<br />
+&nbsp;<br />
+Will&nbsp;perform&nbsp;an&nbsp;"insert"&nbsp;if&nbsp;this&nbsp;object&nbsp;had&nbsp;not&nbsp;been&nbsp;saved&nbsp;before,<br />
+&nbsp;&nbsp;otherwise&nbsp;will&nbsp;update&nbsp;JUST&nbsp;the&nbsp;fields&nbsp;changed&nbsp;on&nbsp;THIS&nbsp;INSTANCE&nbsp;of&nbsp;the&nbsp;model.<br />
+&nbsp;<br />
+&nbsp;&nbsp;i.e.&nbsp;If&nbsp;you&nbsp;have&nbsp;two&nbsp;processes&nbsp;fetch&nbsp;the&nbsp;same&nbsp;object&nbsp;and&nbsp;change&nbsp;different&nbsp;fields,&nbsp;they&nbsp;will&nbsp;not&nbsp;overwrite<br />
+&nbsp;&nbsp;eachother,&nbsp;but&nbsp;only&nbsp;save&nbsp;the&nbsp;ones&nbsp;each&nbsp;process&nbsp;changed.<br />
+&nbsp;<br />
+If&nbsp;you&nbsp;want&nbsp;to&nbsp;save&nbsp;multiple&nbsp;objects&nbsp;of&nbsp;type&nbsp;MyModel&nbsp;in&nbsp;a&nbsp;single&nbsp;transaction,<br />
+and&nbsp;you&nbsp;have&nbsp;those&nbsp;objects&nbsp;in&nbsp;a&nbsp;list,&nbsp;myObjs,&nbsp;you&nbsp;can&nbsp;do&nbsp;the&nbsp;following:<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyModel.saver.<a href="#NetFetchCompressedGzipFile-save" >save</a>(myObjs)<br />
+&nbsp;<br />
+@see&nbsp;#IndexedRedisSave.save<br />
+&nbsp;<br />
+@return&nbsp;&lt;list&gt;&nbsp;-&nbsp;Single&nbsp;element&nbsp;list,&nbsp;id&nbsp;of&nbsp;saved&nbsp;object&nbsp;(if&nbsp;successful)</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-saveToExternal" ><strong >saveToExternal</strong></a>(self, redisCon)</dt><dd ><tt >saveToExternal&nbsp;-&nbsp;Saves&nbsp;this&nbsp;object&nbsp;to&nbsp;a&nbsp;different&nbsp;Redis&nbsp;than&nbsp;that&nbsp;specified&nbsp;by&nbsp;REDIS_CONNECTION_PARAMS&nbsp;on&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;redisCon&nbsp;&lt;dict/redis.Redis&gt;&nbsp;-&nbsp;Either&nbsp;a&nbsp;dict&nbsp;of&nbsp;connection&nbsp;params,&nbsp;a&nbsp;la&nbsp;REDIS_CONNECTION_PARAMS,&nbsp;or&nbsp;an&nbsp;existing&nbsp;Redis&nbsp;connection.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;are&nbsp;doing&nbsp;a&nbsp;lot&nbsp;of&nbsp;bulk&nbsp;copies,&nbsp;it&nbsp;is&nbsp;recommended&nbsp;that&nbsp;you&nbsp;create&nbsp;a&nbsp;Redis&nbsp;connection&nbsp;and&nbsp;pass&nbsp;it&nbsp;in&nbsp;rather&nbsp;than&nbsp;establish&nbsp;a&nbsp;new<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection&nbsp;with&nbsp;each&nbsp;call.<br />
+&nbsp;<br />
+@note&nbsp;-&nbsp;You&nbsp;will&nbsp;generate&nbsp;a&nbsp;new&nbsp;primary&nbsp;key&nbsp;relative&nbsp;to&nbsp;the&nbsp;external&nbsp;Redis&nbsp;environment.&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;reference&nbsp;a&nbsp;"shared"&nbsp;primary&nbsp;key,&nbsp;it&nbsp;is&nbsp;better<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;use&nbsp;an&nbsp;indexed&nbsp;field&nbsp;than&nbsp;the&nbsp;internal&nbsp;pk.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-toDict" ><strong >toDict</strong></a> = asDict(self, includeMeta=False, forStorage=False, strKeys=False)</dt><dd ><tt >toDict&nbsp;/&nbsp;asDict&nbsp;-&nbsp;Get&nbsp;a&nbsp;dictionary&nbsp;representation&nbsp;of&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;includeMeta&nbsp;-&nbsp;Include&nbsp;metadata&nbsp;in&nbsp;return.&nbsp;For&nbsp;now,&nbsp;this&nbsp;is&nbsp;only&nbsp;pk&nbsp;stored&nbsp;as&nbsp;"_id"<br />
+&nbsp;<br />
+@param&nbsp;convertValueTypes&nbsp;&lt;bool&gt;&nbsp;-&nbsp;default&nbsp;True.&nbsp;If&nbsp;False,&nbsp;fields&nbsp;with&nbsp;fieldValue&nbsp;defined&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;that&nbsp;type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;True&nbsp;when&nbsp;saving,&nbsp;etc,&nbsp;as&nbsp;native&nbsp;type&nbsp;is&nbsp;always&nbsp;either&nbsp;str&nbsp;or&nbsp;bytes.<br />
+&nbsp;<br />
+@param&nbsp;strKeys&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;False&nbsp;-&nbsp;If&nbsp;True,&nbsp;just&nbsp;the&nbsp;string&nbsp;value&nbsp;of&nbsp;the&nbsp;field&nbsp;name&nbsp;will&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;key.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;the&nbsp;IRField&nbsp;itself&nbsp;will&nbsp;be&nbsp;(although&nbsp;represented&nbsp;and&nbsp;indexed&nbsp;by&nbsp;string)<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
+
+<hr />
+Class methods inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><a name="NetFetchCompressedGzipFile-connectAlt" ><strong >connectAlt</strong></a>(redisConnectionParams)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >connectAlt&nbsp;-&nbsp;Create&nbsp;a&nbsp;class&nbsp;of&nbsp;this&nbsp;model&nbsp;which&nbsp;will&nbsp;use&nbsp;an&nbsp;alternate&nbsp;connection&nbsp;than&nbsp;the&nbsp;one&nbsp;specified&nbsp;by&nbsp;REDIS_CONNECTION_PARAMS&nbsp;on&nbsp;this&nbsp;model.<br />
+&nbsp;<br />
+@param&nbsp;redisConnectionParams&nbsp;&lt;dict&gt;&nbsp;-&nbsp;Dictionary&nbsp;of&nbsp;arguments&nbsp;to&nbsp;redis.Redis,&nbsp;same&nbsp;as&nbsp;REDIS_CONNECTION_PARAMS.<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;A&nbsp;class&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;all&nbsp;the&nbsp;same&nbsp;ways&nbsp;as&nbsp;the&nbsp;existing&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>,&nbsp;but&nbsp;that&nbsp;connects&nbsp;to&nbsp;a&nbsp;different&nbsp;instance.<br />
+&nbsp;<br />
+&nbsp;&nbsp;The&nbsp;fields&nbsp;and&nbsp;key&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;here,&nbsp;but&nbsp;the&nbsp;connection&nbsp;will&nbsp;be&nbsp;different.&nbsp;use&nbsp;#copyModel&nbsp;if&nbsp;you&nbsp;want&nbsp;an&nbsp;independent&nbsp;class&nbsp;for&nbsp;the&nbsp;model</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-copyModel" ><strong >copyModel</strong></a>()<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >copyModel&nbsp;-&nbsp;Copy&nbsp;this&nbsp;model,&nbsp;and&nbsp;return&nbsp;that&nbsp;copy.<br />
+&nbsp;<br />
+&nbsp;&nbsp;The&nbsp;copied&nbsp;model&nbsp;will&nbsp;have&nbsp;all&nbsp;the&nbsp;same&nbsp;data,&nbsp;but&nbsp;will&nbsp;have&nbsp;a&nbsp;fresh&nbsp;instance&nbsp;of&nbsp;the&nbsp;FIELDS&nbsp;array&nbsp;and&nbsp;all&nbsp;members,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;INDEXED_FIELDS&nbsp;array.<br />
+&nbsp;&nbsp;<br />
+&nbsp;&nbsp;This&nbsp;is&nbsp;useful&nbsp;for&nbsp;converting,&nbsp;like&nbsp;changing&nbsp;field&nbsp;types&nbsp;or&nbsp;whatever,&nbsp;where&nbsp;you&nbsp;can&nbsp;load&nbsp;from&nbsp;one&nbsp;model&nbsp;and&nbsp;save&nbsp;into&nbsp;the&nbsp;other.<br />
+&nbsp;<br />
+@return&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;A&nbsp;copy&nbsp;class&nbsp;of&nbsp;this&nbsp;model&nbsp;class&nbsp;with&nbsp;a&nbsp;unique&nbsp;name.</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-reset" ><strong >reset</strong></a>(newObjs)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >reset&nbsp;-&nbsp;Remove&nbsp;all&nbsp;stored&nbsp;data&nbsp;associated&nbsp;with&nbsp;this&nbsp;model&nbsp;(i.e.&nbsp;all&nbsp;objects&nbsp;of&nbsp;this&nbsp;type),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;then&nbsp;save&nbsp;all&nbsp;the&nbsp;provided&nbsp;objects&nbsp;in&nbsp;#newObjs&nbsp;,&nbsp;all&nbsp;in&nbsp;one&nbsp;atomic&nbsp;transaction.<br />
+&nbsp;<br />
+Use&nbsp;this&nbsp;method&nbsp;to&nbsp;move&nbsp;from&nbsp;one&nbsp;complete&nbsp;set&nbsp;of&nbsp;objects&nbsp;to&nbsp;another,&nbsp;where&nbsp;any&nbsp;querying&nbsp;applications<br />
+will&nbsp;only&nbsp;see&nbsp;the&nbsp;complete&nbsp;before&nbsp;or&nbsp;complete&nbsp;after.<br />
+&nbsp;<br />
+@param&nbsp;newObjs&nbsp;list&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&nbsp;objs&gt;&nbsp;-&nbsp;A&nbsp;list&nbsp;of&nbsp;objects&nbsp;that&nbsp;will&nbsp;replace&nbsp;the&nbsp;current&nbsp;dataset<br />
+&nbsp;<br />
+To&nbsp;just&nbsp;replace&nbsp;a&nbsp;specific&nbsp;subset&nbsp;of&nbsp;objects&nbsp;in&nbsp;a&nbsp;single&nbsp;transaction,&nbsp;you&nbsp;can&nbsp;do&nbsp;MyModel.saver.<a href="#NetFetchCompressedGzipFile-save" >save</a>(objs)<br />
+&nbsp;&nbsp;and&nbsp;just&nbsp;the&nbsp;objs&nbsp;in&nbsp;"objs"&nbsp;will&nbsp;be&nbsp;inserted/updated&nbsp;in&nbsp;one&nbsp;atomic&nbsp;step.<br />
+&nbsp;<br />
+This&nbsp;method,&nbsp;on&nbsp;the&nbsp;other&nbsp;hand,&nbsp;will&nbsp;delete&nbsp;all&nbsp;previous&nbsp;objects&nbsp;and&nbsp;add&nbsp;the&nbsp;newly&nbsp;provided&nbsp;objects&nbsp;in&nbsp;a&nbsp;single&nbsp;atomic&nbsp;step,<br />
+&nbsp;&nbsp;and&nbsp;also&nbsp;reset&nbsp;the&nbsp;primary&nbsp;key&nbsp;ID&nbsp;generator<br />
+&nbsp;<br />
+@return&nbsp;list&lt;int&gt;&nbsp;-&nbsp;The&nbsp;new&nbsp;primary&nbsp;keys&nbsp;associated&nbsp;with&nbsp;each&nbsp;object&nbsp;(same&nbsp;order&nbsp;as&nbsp;provided&nbsp;#newObjs&nbsp;list)</tt></dd></dl>
+
+<dl ><dt ><a name="NetFetchCompressedGzipFile-validateModel" ><strong >validateModel</strong></a>()<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >validateModel&nbsp;-&nbsp;Class&nbsp;method&nbsp;that&nbsp;validates&nbsp;a&nbsp;given&nbsp;model&nbsp;is&nbsp;implemented&nbsp;correctly.&nbsp;Will&nbsp;only&nbsp;be&nbsp;validated&nbsp;once,&nbsp;on&nbsp;first&nbsp;model&nbsp;instantiation.<br />
+&nbsp;<br />
+@param&nbsp;model&nbsp;-&nbsp;Implicit&nbsp;of&nbsp;own&nbsp;class<br />
+&nbsp;<br />
+@return&nbsp;-&nbsp;True<br />
+&nbsp;<br />
+@raises&nbsp;-&nbsp;InvalidModelException&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;problem&nbsp;with&nbsp;the&nbsp;model,&nbsp;and&nbsp;the&nbsp;message&nbsp;contains&nbsp;relevant&nbsp;information.</tt></dd></dl>
+
+<hr />
+Data descriptors inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><strong >__dict__</strong></dt>
+<dd ><tt >dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl ><dt ><strong >__weakref__</strong></dt>
+<dd ><tt >list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr />
+Data and other attributes inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
+<dl ><dt ><strong >REDIS_CONNECTION_PARAMS</strong> = {}</dt></dl>
+
+<dl ><dt ><strong >__hash__</strong> = None</dt></dl>
+
+<dl ><dt ><strong >deleter</strong> = &lt;IndexedRedis.IndexedRedisDelete object&gt;</dt></dl>
+
+<dl ><dt ><strong >objects</strong> = &lt;IndexedRedis.IndexedRedisQuery object&gt;</dt></dl>
+
+<dl ><dt ><strong >saver</strong> = &lt;IndexedRedis.IndexedRedisSave object&gt;</dt></dl>
+
 </td></tr></table> <p >
 <table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
 <tr bgcolor="#ffc8d8" >
@@ -187,6 +893,13 @@ Class methods defined here:<br />
 &nbsp;<br />
 @raises&nbsp;ValueError&nbsp;&nbsp;if&nbsp;provided&nbsp;password&nbsp;does&nbsp;not&nbsp;meet&nbsp;criteria</tt></dd></dl>
 
+<dl ><dt ><a name="NetFetchFile-deleteFile" ><strong >deleteFile</strong></a>(hostname, filename)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >deleteFile&nbsp;-&nbsp;Deletes&nbsp;a&nbsp;file&nbsp;from&nbsp;NetFetch&nbsp;storage.<br />
+&nbsp;<br />
+@param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
+@param&nbsp;filename&nbsp;&lt;str&gt;&nbsp;-&nbsp;Filename&nbsp;to&nbsp;delete<br />
+&nbsp;<br />
+@return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;a&nbsp;file&nbsp;was&nbsp;deleted,&nbsp;otherwise&nbsp;False</tt></dd></dl>
+
 <dl ><dt ><a name="NetFetchFile-downloadToLocal" ><strong >downloadToLocal</strong></a>(hostname, filename, password=None, localFilename=None, retainPermissions=True)<font color="#909090" ><font face="helvetica, arial" > from <a href="builtins.html#type" >builtins.type</a></font></font></dt><dd ><tt >downloadToLocal&nbsp;-&nbsp;Download&nbsp;file&nbsp;to&nbsp;a&nbsp;local&nbsp;filename<br />
 &nbsp;<br />
 @param&nbsp;hostname&nbsp;&lt;str&gt;&nbsp;-&nbsp;Hostname&nbsp;that&nbsp;file&nbsp;was&nbsp;stored&nbsp;on<br />
@@ -222,6 +935,8 @@ Static methods defined here:<br />
 &nbsp;<br />
 @param&nbsp;data&nbsp;&lt;bytes&gt;&nbsp;-&nbsp;Data&nbsp;to&nbsp;check</tt></dd></dl>
 
+<dl ><dt ><a name="NetFetchFile-getNetFetchClassForKey" ><strong >getNetFetchClassForKey</strong></a>(primaryKey)</dt></dl>
+
 <hr />
 Data and other attributes defined here:<br />
 <dl ><dt ><strong >FIELDS</strong> = [IRField( "filename", valueType=str, hashIndex=F...d( "data", hashIndex=True, defaultValue=irNull )]</dt></dl>
@@ -229,6 +944,8 @@ Data and other attributes defined here:<br />
 <dl ><dt ><strong >INDEXED_FIELDS</strong> = ['filename', 'hostname']</dt></dl>
 
 <dl ><dt ><strong >KEY_NAME</strong> = 'NetFetchFile'</dt></dl>
+
+<dl ><dt ><strong >NETFETCH_TYPE</strong> = 0</dt></dl>
 
 <hr />
 Methods inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedis.IndexedRedisModel</a>:<br />
@@ -251,8 +968,6 @@ Methods inherited from <a href="IndexedRedis.html#IndexedRedisModel" >IndexedRed
 They&nbsp;are&nbsp;equal&nbsp;if&nbsp;they&nbsp;have&nbsp;the&nbsp;same&nbsp;type&nbsp;and&nbsp;same&nbsp;field&nbsp;values&nbsp;(including&nbsp;id).<br />
 &nbsp;<br />
 To&nbsp;check&nbsp;if&nbsp;two&nbsp;models&nbsp;have&nbsp;the&nbsp;same&nbsp;values&nbsp;(but&nbsp;can&nbsp;have&nbsp;different&nbsp;ids),&nbsp;use&nbsp;#hasSameValues&nbsp;method.</tt></dd></dl>
-
-<dl ><dt ><a name="NetFetchFile-__getattribute__" ><strong >__getattribute__</strong></a>(self, keyName)</dt><dd ><tt >Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
 
 <dl ><dt ><a name="NetFetchFile-__getstate__" ><strong >__getstate__</strong></a>(self)</dt><dd ><tt >pickle&nbsp;uses&nbsp;this</tt></dd></dl>
 
@@ -298,13 +1013,6 @@ To&nbsp;check&nbsp;if&nbsp;two&nbsp;models&nbsp;have&nbsp;the&nbsp;same&nbsp;val
 &nbsp;<br />
 @return&nbsp;-&nbsp;Dictionary&nbsp;reprensetation&nbsp;of&nbsp;this&nbsp;object&nbsp;and&nbsp;all&nbsp;fields</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-cascadeFetch" ><strong >cascadeFetch</strong></a>(self)</dt><dd ><tt >cascadeFetch&nbsp;-&nbsp;Immediately&nbsp;fetch&nbsp;all&nbsp;foreign&nbsp;links&nbsp;on&nbsp;this&nbsp;field,&nbsp;and&nbsp;all&nbsp;their&nbsp;links,&nbsp;etc.<br />
-&nbsp;<br />
-&nbsp;&nbsp;Normally,&nbsp;this&nbsp;would&nbsp;be&nbsp;done&nbsp;on&nbsp;access&nbsp;of&nbsp;the&nbsp;foreign&nbsp;members,&nbsp;or&nbsp;at&nbsp;.all()&nbsp;time&nbsp;by&nbsp;passing&nbsp;cascadeFetch=True&nbsp;into<br />
-&nbsp;&nbsp;&nbsp;the&nbsp;fetch&nbsp;function<br />
-&nbsp;&nbsp;&nbsp;<br />
-&nbsp;&nbsp;&nbsp;e.x.&nbsp;&nbsp;&nbsp;&nbsp;MyModel.objects.filter(...).all(cascadeFetch=True)</tt></dd></dl>
-
 <dl ><dt ><a name="NetFetchFile-connect" ><strong >connect</strong></a> = _deprecated_wrapper(*args, **kwargs)</dt></dl>
 
 <dl ><dt ><a name="NetFetchFile-copy" ><strong >copy</strong></a>(self, copyPrimaryKey=False, copyValues=False)</dt><dd ><tt >copy&nbsp;-&nbsp;Copies&nbsp;this&nbsp;object.<br />
@@ -323,50 +1031,23 @@ If&nbsp;you&nbsp;need&nbsp;a&nbsp;copy&nbsp;that&nbsp;IS&nbsp;linked,&nbsp;@see&
 
 <dl ><dt ><a name="NetFetchFile-delete" ><strong >delete</strong></a>(self)</dt><dd ><tt >delete&nbsp;-&nbsp;Delete&nbsp;this&nbsp;object</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-diff" ><strong >diff</strong></a>(firstObj, otherObj, includeMeta=False)</dt><dd ><tt >diff&nbsp;-&nbsp;Compare&nbsp;the&nbsp;field&nbsp;values&nbsp;on&nbsp;two&nbsp;IndexedRedisModels.<br />
-&nbsp;<br />
-@param&nbsp;firstObj&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&nbsp;instance&gt;&nbsp;-&nbsp;First&nbsp;object&nbsp;(or&nbsp;self)<br />
-&nbsp;<br />
-@param&nbsp;otherObj&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&nbsp;instance&gt;&nbsp;-&nbsp;Second&nbsp;object<br />
-&nbsp;<br />
-@param&nbsp;includeMeta&nbsp;&lt;bool&gt;&nbsp;-&nbsp;If&nbsp;meta&nbsp;information&nbsp;(like&nbsp;pk)&nbsp;should&nbsp;be&nbsp;in&nbsp;the&nbsp;diff&nbsp;results.<br />
-&nbsp;<br />
-&nbsp;<br />
-@return&nbsp;&lt;dict&gt;&nbsp;-&nbsp;Dict&nbsp;of&nbsp;&nbsp;'field'&nbsp;:&nbsp;(&nbsp;value_firstObjForField,&nbsp;value_otherObjForField&nbsp;).<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Keys&nbsp;are&nbsp;names&nbsp;of&nbsp;fields&nbsp;with&nbsp;different&nbsp;values.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;(&nbsp;value_firstObjForField,&nbsp;value_otherObjForField&nbsp;)<br />
-&nbsp;<br />
-Can&nbsp;be&nbsp;called&nbsp;statically,&nbsp;like:&nbsp;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>.diff&nbsp;(&nbsp;obj1,&nbsp;obj2&nbsp;)<br />
-&nbsp;<br />
-&nbsp;&nbsp;or&nbsp;in&nbsp;reference&nbsp;to&nbsp;an&nbsp;obj&nbsp;&nbsp;&nbsp;:&nbsp;obj1.<a href="#NetFetchFile-diff" >diff</a>(obj2)</tt></dd></dl>
-
 <dl ><dt ><a name="NetFetchFile-getPk" ><strong >getPk</strong></a>(self)</dt><dd ><tt >getPk&nbsp;-&nbsp;Gets&nbsp;the&nbsp;internal&nbsp;primary&nbsp;key&nbsp;associated&nbsp;with&nbsp;this&nbsp;object</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-getUpdatedFields" ><strong >getUpdatedFields</strong></a>(self, cascadeObjects=False)</dt><dd ><tt >getUpdatedFields&nbsp;-&nbsp;See&nbsp;changed&nbsp;fields.<br />
-&nbsp;<br />
-@param&nbsp;cascadeObjects&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False,&nbsp;if&nbsp;True&nbsp;will&nbsp;check&nbsp;if&nbsp;any&nbsp;foreign&nbsp;linked&nbsp;objects&nbsp;themselves&nbsp;have&nbsp;unsaved&nbsp;changes&nbsp;(recursively).<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;will&nbsp;just&nbsp;check&nbsp;if&nbsp;the&nbsp;pk&nbsp;has&nbsp;changed.<br />
+<dl ><dt ><a name="NetFetchFile-getUpdatedFields" ><strong >getUpdatedFields</strong></a>(self)</dt><dd ><tt >getUpdatedFields&nbsp;-&nbsp;See&nbsp;changed&nbsp;fields.<br />
 &nbsp;<br />
 @return&nbsp;-&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;fieldName&nbsp;:&nbsp;tuple(old,&nbsp;new).<br />
 &nbsp;<br />
 fieldName&nbsp;may&nbsp;be&nbsp;a&nbsp;string&nbsp;or&nbsp;may&nbsp;implement&nbsp;IRField&nbsp;(which&nbsp;implements&nbsp;string,&nbsp;and&nbsp;can&nbsp;be&nbsp;used&nbsp;just&nbsp;like&nbsp;a&nbsp;string)</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-hasSameValues" ><strong >hasSameValues</strong></a>(self, other, cascadeObject=True)</dt><dd ><tt >hasSameValues&nbsp;-&nbsp;Check&nbsp;if&nbsp;this&nbsp;and&nbsp;another&nbsp;model&nbsp;have&nbsp;the&nbsp;same&nbsp;fields&nbsp;and&nbsp;values.<br />
+<dl ><dt ><a name="NetFetchFile-hasSameValues" ><strong >hasSameValues</strong></a>(self, other)</dt><dd ><tt >hasSameValues&nbsp;-&nbsp;Check&nbsp;if&nbsp;this&nbsp;and&nbsp;another&nbsp;model&nbsp;have&nbsp;the&nbsp;same&nbsp;fields&nbsp;and&nbsp;values.<br />
 &nbsp;<br />
 This&nbsp;does&nbsp;NOT&nbsp;include&nbsp;id,&nbsp;so&nbsp;the&nbsp;models&nbsp;can&nbsp;have&nbsp;the&nbsp;same&nbsp;values&nbsp;but&nbsp;be&nbsp;different&nbsp;objects&nbsp;in&nbsp;the&nbsp;database.<br />
 &nbsp;<br />
 @param&nbsp;other&nbsp;&lt;<a href="IndexedRedis.html#IndexedRedisModel" >IndexedRedisModel</a>&gt;&nbsp;-&nbsp;Another&nbsp;model<br />
 &nbsp;<br />
-@param&nbsp;cascadeObject&nbsp;&lt;bool&gt;&nbsp;default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;foreign&nbsp;link&nbsp;values&nbsp;with&nbsp;changes&nbsp;will&nbsp;be&nbsp;considered&nbsp;a&nbsp;difference.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;only&nbsp;the&nbsp;immediate&nbsp;values&nbsp;are&nbsp;checked.<br />
-&nbsp;<br />
 @return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;all&nbsp;fields&nbsp;have&nbsp;the&nbsp;same&nbsp;value,&nbsp;otherwise&nbsp;False</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-hasUnsavedChanges" ><strong >hasUnsavedChanges</strong></a>(self, cascadeObjects=False)</dt><dd ><tt >hasUnsavedChanges&nbsp;-&nbsp;Check&nbsp;if&nbsp;any&nbsp;unsaved&nbsp;changes&nbsp;are&nbsp;present&nbsp;in&nbsp;this&nbsp;model,&nbsp;or&nbsp;if&nbsp;it&nbsp;has&nbsp;never&nbsp;been&nbsp;saved.<br />
-&nbsp;<br />
-@param&nbsp;cascadeObjects&nbsp;&lt;bool&gt;&nbsp;default&nbsp;False,&nbsp;if&nbsp;True&nbsp;will&nbsp;check&nbsp;if&nbsp;any&nbsp;foreign&nbsp;linked&nbsp;objects&nbsp;themselves&nbsp;have&nbsp;unsaved&nbsp;changes&nbsp;(recursively).<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;will&nbsp;just&nbsp;check&nbsp;if&nbsp;the&nbsp;pk&nbsp;has&nbsp;changed.<br />
+<dl ><dt ><a name="NetFetchFile-hasUnsavedChanges" ><strong >hasUnsavedChanges</strong></a>(self)</dt><dd ><tt >hasUnsavedChanges&nbsp;-&nbsp;Check&nbsp;if&nbsp;any&nbsp;unsaved&nbsp;changes&nbsp;are&nbsp;present&nbsp;in&nbsp;this&nbsp;model,&nbsp;or&nbsp;if&nbsp;it&nbsp;has&nbsp;never&nbsp;been&nbsp;saved.<br />
 &nbsp;<br />
 @return&nbsp;&lt;bool&gt;&nbsp;-&nbsp;True&nbsp;if&nbsp;any&nbsp;fields&nbsp;have&nbsp;changed&nbsp;since&nbsp;last&nbsp;fetch,&nbsp;or&nbsp;if&nbsp;never&nbsp;saved.&nbsp;Otherwise,&nbsp;False</tt></dd></dl>
 
@@ -374,20 +1055,14 @@ This&nbsp;does&nbsp;NOT&nbsp;include&nbsp;id,&nbsp;so&nbsp;the&nbsp;models&nbsp;
 &nbsp;<br />
 @param&nbsp;stream&nbsp;&lt;file/None&gt;&nbsp;-&nbsp;Either&nbsp;a&nbsp;stream&nbsp;to&nbsp;output,&nbsp;or&nbsp;None&nbsp;to&nbsp;default&nbsp;to&nbsp;sys.stdout</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-reload" ><strong >reload</strong></a>(self, cascadeObjects=True)</dt><dd ><tt >reload&nbsp;-&nbsp;Reload&nbsp;this&nbsp;object&nbsp;from&nbsp;the&nbsp;database,&nbsp;overriding&nbsp;any&nbsp;local&nbsp;changes&nbsp;and&nbsp;merging&nbsp;in&nbsp;any&nbsp;updates.<br />
-&nbsp;<br />
-&nbsp;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;@param&nbsp;cascadeObjects&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True.&nbsp;If&nbsp;True,&nbsp;foreign-linked&nbsp;objects&nbsp;will&nbsp;be&nbsp;reloaded&nbsp;if&nbsp;their&nbsp;values&nbsp;have&nbsp;changed<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;since&nbsp;last&nbsp;save/fetch.&nbsp;If&nbsp;False,&nbsp;only&nbsp;if&nbsp;the&nbsp;pk&nbsp;changed&nbsp;will&nbsp;the&nbsp;foreign&nbsp;linked&nbsp;objects&nbsp;be&nbsp;reloaded.<br />
+<dl ><dt ><a name="NetFetchFile-reload" ><strong >reload</strong></a>(self)</dt><dd ><tt >reload&nbsp;-&nbsp;Reload&nbsp;this&nbsp;object&nbsp;from&nbsp;the&nbsp;database,&nbsp;overriding&nbsp;any&nbsp;local&nbsp;changes&nbsp;and&nbsp;merging&nbsp;in&nbsp;any&nbsp;updates.<br />
 &nbsp;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;@raises&nbsp;KeyError&nbsp;-&nbsp;if&nbsp;this&nbsp;object&nbsp;has&nbsp;not&nbsp;been&nbsp;saved&nbsp;(no&nbsp;primary&nbsp;key)<br />
 &nbsp;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;@return&nbsp;-&nbsp;Dict&nbsp;with&nbsp;the&nbsp;keys&nbsp;that&nbsp;were&nbsp;updated.&nbsp;Key&nbsp;is&nbsp;field&nbsp;name&nbsp;that&nbsp;was&nbsp;updated,<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;value&nbsp;is&nbsp;tuple&nbsp;of&nbsp;(old&nbsp;value,&nbsp;new&nbsp;value).&nbsp;<br />
-&nbsp;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;Currently,&nbsp;this&nbsp;will&nbsp;cause&nbsp;a&nbsp;fetch&nbsp;of&nbsp;all&nbsp;Foreign&nbsp;Link&nbsp;objects,&nbsp;one&nbsp;level</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;value&nbsp;is&nbsp;tuple&nbsp;of&nbsp;(old&nbsp;value,&nbsp;new&nbsp;value).</tt></dd></dl>
 
-<dl ><dt ><a name="NetFetchFile-save" ><strong >save</strong></a>(self, cascadeSave=True)</dt><dd ><tt >save&nbsp;-&nbsp;Save&nbsp;this&nbsp;object.<br />
+<dl ><dt ><a name="NetFetchFile-save" ><strong >save</strong></a>(self)</dt><dd ><tt >save&nbsp;-&nbsp;Save&nbsp;this&nbsp;object.<br />
 &nbsp;<br />
 Will&nbsp;perform&nbsp;an&nbsp;"insert"&nbsp;if&nbsp;this&nbsp;object&nbsp;had&nbsp;not&nbsp;been&nbsp;saved&nbsp;before,<br />
 &nbsp;&nbsp;otherwise&nbsp;will&nbsp;update&nbsp;JUST&nbsp;the&nbsp;fields&nbsp;changed&nbsp;on&nbsp;THIS&nbsp;INSTANCE&nbsp;of&nbsp;the&nbsp;model.<br />
@@ -399,9 +1074,6 @@ If&nbsp;you&nbsp;want&nbsp;to&nbsp;save&nbsp;multiple&nbsp;objects&nbsp;of&nbsp;
 and&nbsp;you&nbsp;have&nbsp;those&nbsp;objects&nbsp;in&nbsp;a&nbsp;list,&nbsp;myObjs,&nbsp;you&nbsp;can&nbsp;do&nbsp;the&nbsp;following:<br />
 &nbsp;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyModel.saver.<a href="#NetFetchFile-save" >save</a>(myObjs)<br />
-&nbsp;<br />
-@param&nbsp;cascadeSave&nbsp;&lt;bool&gt;&nbsp;Default&nbsp;True&nbsp;-&nbsp;If&nbsp;True,&nbsp;any&nbsp;Foreign&nbsp;models&nbsp;linked&nbsp;as&nbsp;attributes&nbsp;that&nbsp;have&nbsp;been&nbsp;altered<br />
-&nbsp;&nbsp;&nbsp;or&nbsp;created&nbsp;will&nbsp;be&nbsp;saved&nbsp;with&nbsp;this&nbsp;object.&nbsp;If&nbsp;False,&nbsp;only&nbsp;this&nbsp;object&nbsp;(and&nbsp;the&nbsp;reference&nbsp;to&nbsp;an&nbsp;already-saved&nbsp;foreign&nbsp;model)&nbsp;will&nbsp;be&nbsp;saved.<br />
 &nbsp;<br />
 @see&nbsp;#IndexedRedisSave.save<br />
 &nbsp;<br />
@@ -552,21 +1224,13 @@ Data descriptors inherited from <a href="builtins.html#BaseException" >builtins.
 </dl>
 <dl ><dt ><strong >args</strong></dt>
 </dl>
-</td></tr></table></p></p></p></td></tr></table><p >
-<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
-<tr bgcolor="#eeaa77" >
-<td colspan="3" valign="bottom" >&nbsp;<br />
-<font color="#ffffff" face="helvetica, arial" ><big ><strong >Functions</strong></big></font></td></tr>
-    
-<tr ><td bgcolor="#eeaa77" ><tt >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td >&nbsp;</td>
-<td width="100%" ><dl ><dt ><a name="-setRedisConnectionParams" ><strong >setRedisConnectionParams</strong></a>(redisParams)</dt></dl>
-</td></tr></table><p >
+</td></tr></table></p></p></p></p></p></td></tr></table><p >
 <table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section" >
 <tr bgcolor="#55aa55" >
 <td colspan="3" valign="bottom" >&nbsp;<br />
 <font color="#ffffff" face="helvetica, arial" ><big ><strong >Data</strong></big></font></td></tr>
     
 <tr ><td bgcolor="#55aa55" ><tt >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td >&nbsp;</td>
-<td width="100%" ><strong >__all__</strong> = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParams')<br />
-<strong >__version_tuple__</strong> = ('2', '1', '0')</td></tr></table>
-</p></p></p></p></body></html>
+<td width="100%" ><strong >__all__</strong> = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'setRedisConnectionParamsNetFetchCompressedLzmaFile', 'NetFetchCompressedGzipFile', 'NetFetchCompressedBzip2File')<br />
+<strong >__version_tuple__</strong> = ('3', '0', '0')</td></tr></table>
+</p></p></p></body></html>
