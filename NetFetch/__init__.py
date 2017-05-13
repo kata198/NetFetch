@@ -20,9 +20,9 @@ __all__ = ('NoSuchNetFetchFile', 'NetFetchFile', 'InvalidPasswordException', 'se
             'NetFetchCompressedLzmaFile', 'NetFetchCompressedGzipFile', 'NetFetchCompressedBzip2File'
 )
 
-__version__ = '3.0.0'
+__version__ = '3.0.1'
 
-__version_tuple__ = ('3', '0', '0')
+__version_tuple__ = ('3', '0', '1')
 
 def setRedisConnectionParams(redisParams):
     IndexedRedis.setDefaultRedisConnectionParams(redisParams)
