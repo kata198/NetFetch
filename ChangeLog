@@ -1,3 +1,8 @@
+* 3.0.2 May 13 2017
+- Add backports.lzma as a depdendency on python2 as python2 doesn't ship with
+a builtin lzma module. This is better than just warning that it's not
+available on python2, especially since it's the default compression mode.
+
 * 3.0.1 May 13 2017
 - Include netFetchDelete in MANIFEST.in and setup.py
 
