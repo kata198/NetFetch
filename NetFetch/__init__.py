@@ -10,6 +10,8 @@ import socket
 
 import IndexedRedis
 
+from IndexedRedis.fields import IRField, IRBytesField
+
 from cryptography.fernet import Fernet
 from hashlib import md5
 
@@ -51,14 +53,14 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
     '''
 
     FIELDS = [
-        'filename',
-        'hostname',
-        'checksum',
-        'encrypted',
-        'mode',
-        'owner',
-        'group',
-        'data',
+        IRField('filename'),
+        IRField('hostname'),
+        IRField('checksum'),
+        IRField('encrypted'),
+        IRField('mode'),
+        IRField('owner'),
+        IRField('group'),
+        IRBytesField('data'),
     ]
 
     INDEXED_FIELDS = [
@@ -66,22 +68,8 @@ class NetFetchFile(IndexedRedis.IndexedRedisModel):
         'hostname'
     ]
 
-    # Note - this changed between version 1.0.0 and 2.0.0 from base64 to binary. Old format will be kept around for one release.
-    BINARY_FIELDS = [
-         'data',
-    ]
-
     KEY_NAME = 'NetFetchFile'
 
-    @staticmethod
-    def toggleOldFormat(useOld=True):
-        if useOld is True:
-            NetFetchFile.BASE64_FIELDS = ['data']
-            NetFetchFile.BINARY_FIELDS = []
-        else:
-            NetFetchFile.BASE64_FIELDS = []
-            NetFetchFile.BINARY_FIELDS = ['data']
-            
 
     ###################################
     ##      Data Access              ##
