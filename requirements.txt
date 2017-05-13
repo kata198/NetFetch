@@ -1,2 +1,3 @@
 IndexedRedis>=5.0.0,<7.0.0
 cryptography
+backports.lzma; python_version < '3.0'
