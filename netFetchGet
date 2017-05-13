@@ -31,7 +31,9 @@ def printUsage():
       --config=/path/config.cfg   Use provided config for redis. Default is to look in ~/.netfetch.cfg then /etc/netfetch.cfg
 
 
-    Provided filename must be an absolute path.
+    Provided filename is treated as an absolute path. You can use a relative path, but it will be expanded
+      to absolute for storage. Upon fetch, you can use the same relative path, so long as it resolves
+      to the same absolute location. It is safest to just specify an absolute path yourself.
 
  Example: netFetchGet filestore01 /Data/myfile.db
 ''')
@@ -108,6 +110,9 @@ if __name__ == '__main__':
     hostname = args[0]
     filename = args[1]
     localFilename = args[2]
+
+    if not filename.startswith('/'):
+        filename = os.path.realpath(filename)
 
     if isPromptPassword:
         password = getpass.getpass()

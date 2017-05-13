@@ -38,7 +38,9 @@ def printUsage():
                                    Supported modes are: 'lzma' (aka xz)   'gzip'   'bzip2'
 
 
-    Provided filename must be an absolute path.
+    Provided filename is treated as an absolute path. You can use a relative path, but it will be expanded
+      to absolute for storage. Upon fetch, you can use the same relative path, so long as it resolves
+      to the same absolute location. It is safest to just specify an absolute path yourself.
 
  Example: netFetchPut /Data/myfile.db
 ''')
@@ -139,8 +141,7 @@ if __name__ == '__main__':
         
     filename = args.pop()
     if not filename.startswith('/'):
-        sys.stderr.write('Only absolute paths are supported.\n')
-        sys.exit(1)
+        filename = os.path.realpath(filename)
     
     if not os.path.exists(filename):
         sys.stderr.write('"%s" does not exist.\n' %(filename,))
